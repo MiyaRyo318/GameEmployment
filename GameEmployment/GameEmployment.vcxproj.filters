@@ -7,6 +7,18 @@
     <Filter Include="Source\Scene">
       <UniqueIdentifier>{a21eb094-3cdd-4bf9-b860-a0d32b7e45b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Play">
+      <UniqueIdentifier>{5a93fcf5-6f4d-4ec6-8726-de099496e413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\FPS">
+      <UniqueIdentifier>{3346b558-27b9-415e-b39d-64779348920f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Enemy">
+      <UniqueIdentifier>{53fa25fe-3333-444b-b5b3-bf93e721dc85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Camera">
+      <UniqueIdentifier>{48420c71-3c5b-473d-87dd-4c735deb7b22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
