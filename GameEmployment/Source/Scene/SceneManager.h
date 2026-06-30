@@ -1,5 +1,7 @@
 #pragma once
 
+#include "GameScene.h"
+
 enum SceneType
 {
     TITLE,
@@ -7,10 +9,8 @@ enum SceneType
     RESULT
 };
 
-
 class SceneManager
 {
-
 public:
 
     void Init();
@@ -21,9 +21,9 @@ public:
 
     void End();
 
-
 private:
 
     SceneType m_Scene;
 
+    GameScene m_GameScene;
 };

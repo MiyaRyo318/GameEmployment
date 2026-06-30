@@ -19,6 +19,12 @@
     <Filter Include="Source\Camera">
       <UniqueIdentifier>{48420c71-3c5b-473d-87dd-4c735deb7b22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Note">
+      <UniqueIdentifier>{ce3c053f-9ae4-4ddd-82fc-c710e6546424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Input">
+      <UniqueIdentifier>{43769325-6e4c-4733-817c-9fbee9f103f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -27,10 +33,52 @@
     <ClCompile Include="Source\Scene\SceneManager.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Note\Note.cpp">
+      <Filter>Source\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Note\NoteManager.cpp">
+      <Filter>Source\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FPS\FPS.cpp">
+      <Filter>Source\FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera\Camera.cpp">
+      <Filter>Source\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\GameScene.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Note\ScoreLoader.cpp">
+      <Filter>Source\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\InputManager.cpp">
+      <Filter>Source\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Scene\SceneManager.h">
       <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Note\Note.h">
+      <Filter>Source\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Note\NoteManager.h">
+      <Filter>Source\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FPS\FPS.h">
+      <Filter>Source\FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera\Camera.h">
+      <Filter>Source\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\GameScene.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Note\ScoreLoader.h">
+      <Filter>Source\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Input\InputManager.h">
+      <Filter>Source\Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
