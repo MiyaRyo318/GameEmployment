@@ -64,7 +64,7 @@ void GameScene::Draw()
         GetColor(60, 60, 60),
         TRUE);
 
-    // Œõ‚é•”•ª
+    // Œõ‚é•”•ª‚âBŸ‚ÌâW‰@‰Æ“–å‚Í‰´‚â
     if (m_Input.IsDon())
     {
         DrawCircle(
