@@ -140,6 +140,8 @@
     <ClCompile Include="Source\Note\ScoreLoader.cpp" />
     <ClCompile Include="Source\Scene\GameScene.cpp" />
     <ClCompile Include="Source\Scene\SceneManager.cpp" />
+    <ClCompile Include="Source\Sound\SE.cpp" />
+    <ClCompile Include="Source\Sound\Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Camera\Camera.h" />
@@ -150,6 +152,8 @@
     <ClInclude Include="Source\Note\ScoreLoader.h" />
     <ClInclude Include="Source\Scene\GameScene.h" />
     <ClInclude Include="Source\Scene\SceneManager.h" />
+    <ClInclude Include="Source\Sound\SE.h" />
+    <ClInclude Include="Source\Sound\Sound.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

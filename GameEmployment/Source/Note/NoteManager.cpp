@@ -50,31 +50,7 @@ void NoteManager::Update(float currentTime)
 
 void NoteManager::Draw()
 {
-    // レーン
-    DrawBox(
-        0,
-        460,
-        1280,
-        540,
-        GetColor(60, 60, 60),
-        TRUE);
-
-    // 判定枠
-    DrawCircle(
-        200,
-        500,
-        45,
-        GetColor(255, 255, 0),
-        FALSE);
-
-    // 判定ライン
-    DrawBox(
-        198,
-        460,
-        202,
-        540,
-        GetColor(255, 255, 255),
-        TRUE);
+    
 
     // ノーツ
     for (auto& note : m_Notes)
