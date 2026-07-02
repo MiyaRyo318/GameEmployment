@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "../Judge/JudgeManager.h"
 
 GameScene::GameScene()
 {
@@ -35,6 +36,38 @@ void GameScene::Update()
     m_CurrentTime = (GetNowCount() - m_StartTime) / 1000.0f;
 
     m_Input.Update();
+
+    if (m_Input.IsDon())
+    {
+        Note* note = m_NoteManager.GetFirstNote();
+
+        if (note)
+        {
+            JudgeType judge =
+                m_Judge.Judge(
+                    note->GetHitTime(),
+                    m_CurrentTime);
+
+            switch (judge)
+            {
+            case PERFECT:
+
+                break;
+
+            case GREAT:
+
+                break;
+
+            case GOOD:
+
+                break;
+
+            case MISS:
+
+                break;
+            }
+        }
+    }
 
     m_Camera.Update();
 

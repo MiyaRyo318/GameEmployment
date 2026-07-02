@@ -4,6 +4,7 @@
 #include "../Camera/Camera.h"
 #include "../Note/NoteManager.h"
 #include "../Input/InputManager.h"
+#include "../Judge/JudgeManager.h"
 
 class GameScene
 {
@@ -35,6 +36,8 @@ private:
     NoteManager m_NoteManager;
 
     InputManager m_Input;
+
+    JudgeManager m_Judge;
 
     // ƒQ[ƒ€ŠJnŠÔ
     int m_StartTime;

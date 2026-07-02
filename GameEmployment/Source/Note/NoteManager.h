@@ -22,6 +22,8 @@ public:
 
     void Clear();
 
+    Note* GetFirstNote();
+
 private:
 
     std::vector<Note> m_Notes;

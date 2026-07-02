@@ -33,18 +33,13 @@ void NoteManager::Update(float currentTime)
     }
 
     m_Notes.erase(
-
         std::remove_if(
-
             m_Notes.begin(),
-
             m_Notes.end(),
-
             [](const Note& note)
             {
-                return note.IsDead();
+                return note.IsDead() || note.IsJudge();
             }),
-
         m_Notes.end());
 }
 
@@ -97,4 +92,14 @@ void NoteManager::AddNote(
 void NoteManager::Clear()
 {
     m_Notes.clear();
+}
+
+Note* NoteManager::GetFirstNote()
+{
+    if (m_Notes.empty())
+    {
+        return nullptr;
+    }
+
+    return &m_Notes.front();
 }

@@ -57,7 +57,7 @@ bool Note::IsJudge() const
 
 bool Note::IsDead() const
 {
-    return m_X < -100;
+    return m_X < -64.0f;
 }
 
 float Note::GetHitTime() const
