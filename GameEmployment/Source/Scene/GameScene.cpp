@@ -52,18 +52,25 @@ void GameScene::Update()
             {
             case PERFECT:
 
+                note->SetJudge(true);
+                m_LastJudge = PERFECT;
                 break;
 
             case GREAT:
 
+                note->SetJudge(true);
+                m_LastJudge = GREAT;
                 break;
 
             case GOOD:
 
+                note->SetJudge(true);
+                m_LastJudge = GOOD;
                 break;
 
             case MISS:
 
+                m_LastJudge = MISS;
                 break;
             }
         }
@@ -162,7 +169,26 @@ void GameScene::Draw()
         GetColor(255, 255, 255),
         "GameScene");
 
-    m_NoteManager.Draw();
+    //m_NoteManager.Draw();
+
+    switch (m_LastJudge)
+    {
+    case PERFECT:
+        DrawString(500, 100, "PERFECT", GetColor(255, 255, 0));
+        break;
+
+    case GREAT:
+        DrawString(500, 100, "GREAT", GetColor(0, 255, 0));
+        break;
+
+    case GOOD:
+        DrawString(500, 100, "GOOD", GetColor(0, 255, 255));
+        break;
+
+    case MISS:
+        DrawString(500, 100, "MISS", GetColor(255, 0, 0));
+        break;
+    }
 }
 
 void GameScene::End()

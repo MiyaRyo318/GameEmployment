@@ -44,4 +44,6 @@ private:
 
     // Œ»İ‚ÌŒo‰ßŠÔ(•b)
     float m_CurrentTime;
+
+    JudgeType m_LastJudge = NONE;
 };

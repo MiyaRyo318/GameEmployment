@@ -14,6 +14,7 @@ Note::Note()
     m_Type = DON;
 
     m_IsJudge = false;
+    m_IsDelete = false;
 
     m_Image = -1;
 }
@@ -57,7 +58,7 @@ bool Note::IsJudge() const
 
 bool Note::IsDead() const
 {
-    return m_X < -64.0f;
+    return m_IsDelete;
 }
 
 float Note::GetHitTime() const
@@ -68,4 +69,14 @@ float Note::GetHitTime() const
 NoteType Note::GetType() const
 {
     return m_Type;
+}
+
+void Note::SetDelete(bool flag)
+{
+    m_IsDelete = flag;
+}
+
+bool Note::IsDelete() const
+{
+    return m_IsDelete;
 }

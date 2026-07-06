@@ -26,9 +26,13 @@ public:
 
     void SetJudge(bool judge);
 
+    void SetDelete(bool flag);
+
     bool IsJudge() const;
 
     bool IsDead() const;
+
+    bool IsDelete() const;
 
     float GetHitTime() const;
 
@@ -46,6 +50,8 @@ private:
     NoteType m_Type;
 
     bool m_IsJudge;
+
+    bool m_IsDelete;
 
     int m_Image;
 };
