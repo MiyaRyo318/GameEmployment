@@ -103,3 +103,23 @@ Note* NoteManager::GetFirstNote()
 
     return &m_Notes.front();
 }
+
+Note* NoteManager::GetJudgeNote(NoteType type)
+{
+    for (auto& note : m_Notes)
+    {
+        // ”»’èÏ‚İ‚Í–³‹
+        if (note.IsJudge())
+        {
+            continue;
+        }
+
+        // í—Ş‚ªˆê’v‚µ‚½ƒm[ƒc‚ğ•Ô‚·
+        if (note.GetType() == type)
+        {
+            return &note;
+        }
+    }
+
+    return nullptr;
+}

@@ -37,9 +37,9 @@ void GameScene::Update()
 
     m_Input.Update();
 
-    if (m_Input.IsDon())
+    if (m_Input.IsDonTrigger())
     {
-        Note* note = m_NoteManager.GetFirstNote();
+        Note* note = m_NoteManager.GetJudgeNote(DON);
 
         if (note)
         {
@@ -76,6 +76,41 @@ void GameScene::Update()
         }
     }
 
+    if (m_Input.IsKaTrigger())
+    {
+        Note* note = m_NoteManager.GetJudgeNote(KA);
+
+        if (note)
+        {
+            JudgeType judge =
+                m_Judge.Judge(
+                    note->GetHitTime(),
+                    m_CurrentTime);
+
+            switch (judge)
+            {
+            case PERFECT:
+                note->SetJudge(true);
+                m_LastJudge = PERFECT;
+                break;
+
+            case GREAT:
+                note->SetJudge(true);
+                m_LastJudge = GREAT;
+                break;
+
+            case GOOD:
+                note->SetJudge(true);
+                m_LastJudge = GOOD;
+                break;
+
+            case MISS:
+                m_LastJudge = MISS;
+                break;
+            }
+        }
+    }
+
     m_Camera.Update();
 
     //m_Player.Update();
@@ -105,7 +140,7 @@ void GameScene::Draw()
         TRUE);
 
     // Œõ‚é•”•ª‚âBŽŸ‚ÌâW‰@‰Æ“–Žå‚Í‰´‚â
-    if (m_Input.IsDon())
+    if (m_Input.IsDonTrigger())
     {
         DrawCircle(
             200,
@@ -147,7 +182,7 @@ void GameScene::Draw()
 
     int judgeColor = GetColor(255, 255, 255);
 
-    if (m_Input.IsDon())
+    if (m_Input.IsDonTrigger())
     {
         judgeColor = GetColor(255, 0, 0);
     }
@@ -188,6 +223,32 @@ void GameScene::Draw()
     case MISS:
         DrawString(500, 100, "MISS", GetColor(255, 0, 0));
         break;
+    }
+
+    Note* note = m_NoteManager.GetFirstNote();
+
+    if (note)
+    {
+        DrawFormatString(
+            20,
+            50,
+            GetColor(255, 255, 255),
+            "Now : %.2f",
+            m_CurrentTime);
+
+        DrawFormatString(
+            20,
+            70,
+            GetColor(255, 255, 255),
+            "Hit : %.2f",
+            note->GetHitTime());
+
+        DrawFormatString(
+            20,
+            90,
+            GetColor(255, 255, 255),
+            "Diff : %.2f",
+            fabs(note->GetHitTime() - m_CurrentTime));
     }
 }
 

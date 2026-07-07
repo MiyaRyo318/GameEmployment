@@ -24,6 +24,8 @@ public:
 
     Note* GetFirstNote();
 
+    Note* GetJudgeNote(NoteType type);
+
 private:
 
     std::vector<Note> m_Notes;
