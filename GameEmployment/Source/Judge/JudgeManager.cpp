@@ -7,17 +7,20 @@ JudgeType JudgeManager::Judge(
 {
     float diff = fabs(noteTime - currentTime);
 
-    if (diff <= 0.20f)
+    // }0.04•b
+    if (diff <= 0.04f)
     {
         return PERFECT;
     }
 
-    if (diff <= 0.40f)
+    // }0.08•b
+    if (diff <= 0.08f)
     {
         return GREAT;
     }
 
-    if (diff <= 0.60f)
+    // }0.12•b
+    if (diff <= 0.12f)
     {
         return GOOD;
     }

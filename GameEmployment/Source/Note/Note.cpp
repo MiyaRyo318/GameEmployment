@@ -43,7 +43,34 @@ void Note::Update(float currentTime)
 
 void Note::Draw()
 {
-    DrawGraph((int)m_X, (int)m_Y, m_Image, TRUE);
+    int color;
+
+    if (m_Type == DON)
+    {
+        // ドン（赤）
+        color = GetColor(255, 0, 0);
+    }
+    else
+    {
+        // カッ（青）
+        color = GetColor(0, 128, 255);
+    }
+
+    // 外側の白い縁
+    DrawCircle(
+        (int)m_X,
+        (int)m_Y,
+        28,
+        GetColor(255, 255, 255),
+        TRUE);
+
+    // 中身
+    DrawCircle(
+        (int)m_X,
+        (int)m_Y,
+        22,
+        color,
+        TRUE);
 }
 
 void Note::SetJudge(bool judge)

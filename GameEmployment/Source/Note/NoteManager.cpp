@@ -16,8 +16,8 @@ void NoteManager::Init()
 {
     m_Notes.clear();
 
-    m_DonImage = LoadGraph("Data/Image/Don.png");
-    m_KaImage = LoadGraph("Data/Image/Ka.png");
+    //m_DonImage = LoadGraph("Data/Image/Don.png");
+    //m_KaImage = LoadGraph("Data/Image/Ka.png");
 
     constexpr float NOTE_Y = 500.0f;
 
@@ -69,22 +69,11 @@ void NoteManager::AddNote(
 {
     Note note;
 
-    if (type == DON)
-    {
-        note.Create(
-            hitTime,
-            type,
-            y,
-            m_DonImage);
-    }
-    else
-    {
-        note.Create(
-            hitTime,
-            type,
-            y,
-            m_KaImage);
-    }
+    note.Create(
+        hitTime,
+        type,
+        y,
+        -1);
 
     m_Notes.push_back(note);
 }
