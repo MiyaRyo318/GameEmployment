@@ -33,6 +33,9 @@ void Sound::End()
 
 void Sound::PlayBGM()
 {
+    // âπó ê›íËÅi0Å`255Åj
+    ChangeVolumeSoundMem(100, m_BGMHandle);
+
     if (CheckSoundMem(m_BGMHandle) == 0)
     {
         PlaySoundMem(

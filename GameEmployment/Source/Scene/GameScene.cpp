@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "../Judge/JudgeManager.h"
+#include "../Sound/Sound.h"
 
 GameScene::GameScene()
 {
@@ -25,6 +26,10 @@ void GameScene::Init()
 
     // ノーツ
     m_NoteManager.Init();
+
+    m_Sound.Init();
+
+    m_Sound.PlayBGM();
 
     // ゲーム開始時間
     m_StartTime = GetNowCount();
@@ -70,6 +75,7 @@ void GameScene::Update()
 
             case MISS:
 
+                note->SetDelete(true);
                 m_LastJudge = MISS;
                 break;
             }
@@ -105,11 +111,14 @@ void GameScene::Update()
                 break;
 
             case MISS:
+
+                note->SetDelete(true);
                 m_LastJudge = MISS;
                 break;
             }
         }
     }
+
 
     m_Camera.Update();
 
@@ -254,5 +263,5 @@ void GameScene::Draw()
 
 void GameScene::End()
 {
-
+    m_Sound.End();
 }

@@ -16,13 +16,22 @@ void NoteManager::Init()
 {
     m_Notes.clear();
 
-    //m_DonImage = LoadGraph("Data/Image/Don.png");
-    //m_KaImage = LoadGraph("Data/Image/Ka.png");
-
     constexpr float NOTE_Y = 500.0f;
 
-    AddNote(1.0f, DON, NOTE_Y);
-    AddNote(2.0f, KA, NOTE_Y);
+    if (!m_ScoreLoader.Load("Data/Score/test.txt"))
+    {
+        return;
+    }
+
+    const auto& score = m_ScoreLoader.GetScore();
+
+    for (const auto& note : score)
+    {
+        AddNote(
+            note.HitTime,
+            note.Type,
+            NOTE_Y);
+    }
 }
 
 void NoteManager::Update(float currentTime)
@@ -97,13 +106,16 @@ Note* NoteManager::GetJudgeNote(NoteType type)
 {
     for (auto& note : m_Notes)
     {
-        // îªíËçœÇ›ÇÕñ≥éã
         if (note.IsJudge())
         {
             continue;
         }
 
-        // éÌóﬁÇ™àÍívÇµÇΩÉmÅ[ÉcÇï‘Ç∑
+        if (note.IsDelete())
+        {
+            continue;
+        }
+
         if (note.GetType() == type)
         {
             return &note;
