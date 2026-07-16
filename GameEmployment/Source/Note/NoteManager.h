@@ -26,6 +26,9 @@ public:
 
     Note* GetJudgeNote(NoteType type);
 
+    // Ž©“®MISS”»’è
+    bool AutoMiss(float currentTime);
+
 private:
 
     std::vector<Note> m_Notes;

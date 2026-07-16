@@ -124,3 +124,28 @@ Note* NoteManager::GetJudgeNote(NoteType type)
 
     return nullptr;
 }
+
+bool NoteManager::AutoMiss(float currentTime)
+{
+    if (m_Notes.empty())
+    {
+        return false;
+    }
+
+    Note& note = m_Notes.front();
+
+    // ‚·‚Å‚É”»’èÏ‚ÝEíœÏ‚Ý‚È‚ç‰½‚à‚µ‚È‚¢
+    if (note.IsJudge() || note.IsDelete())
+    {
+        return false;
+    }
+
+    // GOOD”»’è‚ð‰ß‚¬‚½‚çMISS
+    if (currentTime > note.GetHitTime() + 0.12f)
+    {
+        note.SetDelete(true);
+        return true;
+    }
+
+    return false;
+}

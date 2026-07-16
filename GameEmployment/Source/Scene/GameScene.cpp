@@ -119,12 +119,17 @@ void GameScene::Update()
         }
     }
 
-
     m_Camera.Update();
 
     //m_Player.Update();
 
     //m_Enemy.Update();
+
+    // Ž©“®MISS
+    if (m_NoteManager.AutoMiss(m_CurrentTime))
+    {
+        m_LastJudge = MISS;
+    }
 
     m_NoteManager.Update(m_CurrentTime);
 }
