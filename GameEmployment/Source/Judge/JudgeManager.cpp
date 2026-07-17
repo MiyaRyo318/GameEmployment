@@ -25,5 +25,5 @@ JudgeType JudgeManager::Judge(
         return GOOD;
     }
 
-    return MISS;
+    return NONE;
 }

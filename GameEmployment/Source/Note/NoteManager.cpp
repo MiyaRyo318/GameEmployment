@@ -134,13 +134,12 @@ bool NoteManager::AutoMiss(float currentTime)
 
     Note& note = m_Notes.front();
 
-    // ‚·‚Å‚É”»’èÏ‚ÝEíœÏ‚Ý‚È‚ç‰½‚à‚µ‚È‚¢
     if (note.IsJudge() || note.IsDelete())
     {
         return false;
     }
 
-    // GOOD”»’è‚ð‰ß‚¬‚½‚çMISS
+    // GOOD”»’è‚ð‰ß‚¬‚Ä‚à‰Ÿ‚³‚ê‚È‚©‚Á‚½‚çMISS
     if (currentTime > note.GetHitTime() + 0.12f)
     {
         note.SetDelete(true);

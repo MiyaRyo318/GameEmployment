@@ -73,10 +73,10 @@ void GameScene::Update()
                 m_LastJudge = GOOD;
                 break;
 
-            case MISS:
+            case NONE:
+                break;
 
-                note->SetDelete(true);
-                m_LastJudge = MISS;
+            case MISS:
                 break;
             }
         }
@@ -110,10 +110,10 @@ void GameScene::Update()
                 m_LastJudge = GOOD;
                 break;
 
-            case MISS:
+            case NONE:
+                break;
 
-                note->SetDelete(true);
-                m_LastJudge = MISS;
+            case MISS:
                 break;
             }
         }
@@ -125,7 +125,6 @@ void GameScene::Update()
 
     //m_Enemy.Update();
 
-    // Ž©“®MISS
     if (m_NoteManager.AutoMiss(m_CurrentTime))
     {
         m_LastJudge = MISS;

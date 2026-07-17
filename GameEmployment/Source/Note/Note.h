@@ -36,6 +36,8 @@ public:
 
     float GetHitTime() const;
 
+    float GetX() const;
+
     NoteType GetType() const;
 
 private:

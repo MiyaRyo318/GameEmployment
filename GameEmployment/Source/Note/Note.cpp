@@ -113,3 +113,8 @@ bool Note::IsDelete() const
 {
     return m_IsDelete;
 }
+
+float Note::GetX() const
+{
+    return m_X;
+}
