@@ -29,7 +29,7 @@ void GameScene::Init()
 
     m_Sound.Init();
 
-    m_Sound.PlayBGM();
+    //m_Sound.PlayBGM();
 
     // ゲーム開始時間
     m_StartTime = GetNowCount();
@@ -152,8 +152,7 @@ void GameScene::Draw()
         GetColor(60, 60, 60),
         TRUE);
 
-    // 光る部分や。次の禪院家当主は俺や
-    if (m_Input.IsDonTrigger())
+    if (m_Input.IsDon())
     {
         DrawCircle(
             200,
@@ -211,11 +210,7 @@ void GameScene::Draw()
         judgeColor,
         FALSE);
 
-    DrawFormatString(
-        300,
-        100,
-        GetColor(255, 255, 255),
-        "GameScene");
+    //DrawFormatString(300,100,GetColor(255, 255, 255),"GameScene");
 
     //m_NoteManager.Draw();
 

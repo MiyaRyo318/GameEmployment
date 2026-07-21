@@ -140,7 +140,7 @@ bool NoteManager::AutoMiss(float currentTime)
     }
 
     // GOOD”»’è‚ð‰ß‚¬‚Ä‚à‰Ÿ‚³‚ê‚È‚©‚Á‚½‚çMISS
-    if (currentTime > note.GetHitTime() + 0.12f)
+    if (currentTime > note.GetHitTime() + 0.20f)
     {
         note.SetDelete(true);
         return true;
