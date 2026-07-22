@@ -1,6 +1,9 @@
 #include "GameScene.h"
 #include "../Judge/JudgeManager.h"
 #include "../Sound/Sound.h"
+#include "../Sound/SE.h"
+
+SE m_SE;
 
 GameScene::GameScene()
 {
@@ -28,6 +31,7 @@ void GameScene::Init()
     m_NoteManager.Init();
 
     m_Sound.Init();
+    m_SE.Init();
 
     //m_Sound.PlayBGM();
 
@@ -44,6 +48,8 @@ void GameScene::Update()
 
     if (m_Input.IsDonTrigger())
     {
+        m_SE.PlayDon();
+
         Note* note = m_NoteManager.GetJudgeNote(DON);
 
         if (note)
@@ -84,6 +90,8 @@ void GameScene::Update()
 
     if (m_Input.IsKaTrigger())
     {
+        m_SE.PlayKa();
+
         Note* note = m_NoteManager.GetJudgeNote(KA);
 
         if (note)
@@ -154,6 +162,7 @@ void GameScene::Draw()
 
     if (m_Input.IsDon())
     {
+        
         DrawCircle(
             200,
             500,
@@ -263,4 +272,5 @@ void GameScene::Draw()
 void GameScene::End()
 {
     m_Sound.End();
+    m_SE.End();
 }
