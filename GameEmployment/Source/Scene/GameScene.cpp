@@ -33,7 +33,7 @@ void GameScene::Init()
     m_Sound.Init();
     m_SE.Init();
 
-    //m_Sound.PlayBGM();
+    m_Sound.PlayBGM();
 
     // ƒQ[ƒ€ŠJnŠÔ
     m_StartTime = GetNowCount();
