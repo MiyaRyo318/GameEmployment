@@ -190,7 +190,7 @@ void GameScene::Draw()
         GetColor(255, 255, 255),
         TRUE);
 
-    // ”»’è˜g
+    // ”»’è˜g‚âBŸ‚ÌâW‰@‰Æ“–å‚Í‰´‚âB
     DrawCircle(
         200,
         500,
