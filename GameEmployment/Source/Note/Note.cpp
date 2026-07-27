@@ -40,7 +40,7 @@ void Note::Update(float currentTime)
 
     m_X = JUDGE_LINE_X + remain * m_Speed;
 
-    // GOOD”»’è‚æ‚è’x‚ê‚½‚çíœ
+    // GOOD”»’è‚æ‚è’x‚ê‚½‚çíœ‚âBíœ‚·‚é‚ñ‚Í‰´‚â
     if (currentTime > m_HitTime + 0.20f)
     {
         m_IsDelete = true;
