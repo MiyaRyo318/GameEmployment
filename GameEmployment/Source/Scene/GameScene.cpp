@@ -2,6 +2,7 @@
 #include "../Judge/JudgeManager.h"
 #include "../Sound/Sound.h"
 #include "../Sound/SE.h"
+#include "../Player/Player.h"
 
 SE m_SE;
 
@@ -22,7 +23,7 @@ void GameScene::Init()
     m_Camera.Init();
 
     // ÉvÉåÉCÉÑÅ[
-    //m_Player.Init();
+    m_Player.Init();
 
     // ìG
     //m_Enemy.Init();
@@ -136,6 +137,13 @@ void GameScene::Update()
     if (m_NoteManager.AutoMiss(m_CurrentTime))
     {
         m_LastJudge = MISS;
+
+        m_Player.Damage(10);
+    }
+
+    if (m_Player.IsDead())
+    {
+        // GameOverSceneÇ÷
     }
 
     m_NoteManager.Update(m_CurrentTime);
@@ -267,6 +275,40 @@ void GameScene::Draw()
             "Diff : %.2f",
             fabs(note->GetHitTime() - m_CurrentTime));
     }
+
+    // HPÉQÅ[ÉWîwåi
+    DrawBox(
+        20,
+        20,
+        320,
+        50,
+        GetColor(80, 80, 80),
+        TRUE);
+
+    // HP
+    DrawBox(
+        20,
+        20,
+        20 + m_Player.GetHP() * 3,
+        50,
+        GetColor(0, 255, 0),
+        TRUE);
+
+    // òg
+    DrawBox(
+        20,
+        20,
+        320,
+        50,
+        GetColor(255, 255, 255),
+        FALSE);
+
+    DrawFormatString(
+        330,
+        25,
+        GetColor(255, 255, 255),
+        "%d / 100",
+        m_Player.GetHP());
 }
 
 void GameScene::End()

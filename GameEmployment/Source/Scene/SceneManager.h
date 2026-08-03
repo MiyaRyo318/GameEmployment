@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameScene.h"
+#include "TitleScene.h"
 
 enum SceneType
 {
@@ -26,4 +27,6 @@ private:
     SceneType m_Scene;
 
     GameScene m_GameScene;
+
+    TitleScene m_TitleScene;
 };
