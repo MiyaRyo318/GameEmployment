@@ -19,12 +19,6 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
     DrawGraph(0, 0, m_TitleImage, TRUE);
-
-    DrawString(
-        470,
-        620,
-        "PRESS SPACE KEY",
-        GetColor(255, 255, 255));
 }
 
 void TitleScene::End()

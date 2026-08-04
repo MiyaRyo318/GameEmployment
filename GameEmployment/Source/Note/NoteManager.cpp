@@ -16,7 +16,7 @@ void NoteManager::Init()
 {
     m_Notes.clear();
 
-    constexpr float NOTE_Y = 500.0f;
+    constexpr float NOTE_Y = 650.0f;
 
     if (!m_ScoreLoader.Load("Data/Score/test.txt"))
     {

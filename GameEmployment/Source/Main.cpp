@@ -9,7 +9,7 @@ int WINAPI WinMain(
 {
     ChangeWindowMode(TRUE);
 
-    SetGraphMode(1280, 720, 32);
+    SetGraphMode(1600, 900, 32);
 
     if (DxLib_Init() == -1)
     {

@@ -162,9 +162,9 @@ void GameScene::Draw()
     // ÉåÅ[Éì
     DrawBox(
         0,
-        460,
-        1280,
-        540,
+        610,
+        1600,
+        690,
         GetColor(60, 60, 60),
         TRUE);
 
@@ -173,7 +173,7 @@ void GameScene::Draw()
         
         DrawCircle(
             200,
-            500,
+            650,
             40,
             GetColor(255, 80, 80),
             TRUE);
@@ -183,7 +183,7 @@ void GameScene::Draw()
     {
         DrawCircle(
             200,
-            500,
+            650,
             40,
             GetColor(80, 160, 255),
             TRUE);
@@ -192,16 +192,16 @@ void GameScene::Draw()
     // îªíËÉâÉCÉì
     DrawBox(
         198,
-        460,
+        610,
         202,
-        540,
+        690,
         GetColor(255, 255, 255),
         TRUE);
 
     // îªíËògÇ‚ÅBéüÇÃ‚Wâ@â∆ìñéÂÇÕâ¥Ç‚ÅB
     DrawCircle(
         200,
-        500,
+        650,
         45,
         GetColor(255, 255, 255),
         FALSE);
@@ -222,8 +222,8 @@ void GameScene::Draw()
 
     DrawCircle(
         200,
-        500,
-        45,
+        650,
+        40,
         judgeColor,
         FALSE);
 
@@ -234,19 +234,19 @@ void GameScene::Draw()
     switch (m_LastJudge)
     {
     case PERFECT:
-        DrawString(500, 100, "PERFECT", GetColor(255, 255, 0));
+        DrawString(185, 550, "PERFECT", GetColor(255, 255, 0));
         break;
 
     case GREAT:
-        DrawString(500, 100, "GREAT", GetColor(0, 255, 0));
+        DrawString(185, 550, "GREAT", GetColor(0, 255, 0));
         break;
 
     case GOOD:
-        DrawString(500, 100, "GOOD", GetColor(0, 255, 255));
+        DrawString(185, 550, "GOOD", GetColor(0, 255, 255));
         break;
 
     case MISS:
-        DrawString(500, 100, "MISS", GetColor(255, 0, 0));
+        DrawString(185, 550, "MISS", GetColor(255, 0, 0));
         break;
     }
 
