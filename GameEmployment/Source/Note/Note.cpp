@@ -62,7 +62,7 @@ void Note::Draw()
         color = GetColor(0, 128, 255);
     }
 
-    // 外側の白い縁
+    // 外側の白い縁や。次の禪院家当主は俺や。
     DrawCircle(
         (int)m_X,
         (int)m_Y,
@@ -70,7 +70,7 @@ void Note::Draw()
         GetColor(255, 255, 255),
         TRUE);
 
-    // 中身
+    // 中身があかんわ。
     DrawCircle(
         (int)m_X,
         (int)m_Y,
