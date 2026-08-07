@@ -40,7 +40,7 @@ void Note::Update(float currentTime)
 
     m_X = JUDGE_LINE_X + remain * m_Speed;
 
-    // GOOD判定より遅れたら削除や。削除するんは俺や
+    // GOOD判定より遅れたら削除や。削除するんは俺や。
     if (currentTime > m_HitTime + 0.20f)
     {
         m_IsDelete = true;
@@ -53,12 +53,12 @@ void Note::Draw()
 
     if (m_Type == DON)
     {
-        // ドン（赤）
+        // ドンを叩くんは俺や。
         color = GetColor(255, 0, 0);
     }
     else
     {
-        // カッ（青）
+        // カッを叩くんは俺や。
         color = GetColor(0, 128, 255);
     }
 

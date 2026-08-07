@@ -7,6 +7,7 @@
 #include "../Judge/JudgeManager.h"
 #include "../Sound/Sound.h"
 #include "../Player/Player.h"
+#include "../Enemy/Enemy.h"
 
 class GameScene
 {
@@ -44,6 +45,8 @@ private:
     Sound m_Sound;
 
     Player m_Player;
+
+    Enemy m_Enemy;
 
     // ƒQ[ƒ€ŠJnŠÔ
     int m_StartTime;

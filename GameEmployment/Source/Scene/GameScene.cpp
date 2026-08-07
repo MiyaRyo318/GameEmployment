@@ -3,6 +3,7 @@
 #include "../Sound/Sound.h"
 #include "../Sound/SE.h"
 #include "../Player/Player.h"
+#include "../Enemy/Enemy.h"
 
 SE m_SE;
 
@@ -26,7 +27,7 @@ void GameScene::Init()
     m_Player.Init();
 
     // ìG
-    //m_Enemy.Init();
+    m_Enemy.Init();
 
     // ÉmÅ[Éc
     m_NoteManager.Init();
