@@ -131,9 +131,9 @@ void GameScene::Update()
 
     m_Camera.Update();
 
-    //m_Player.Update();
+    m_Player.Update();
 
-    //m_Enemy.Update();
+    m_Enemy.Update();
 
     if (m_NoteManager.AutoMiss(m_CurrentTime))
     {
@@ -154,9 +154,9 @@ void GameScene::Draw()
 {
     // ===== 3D =====
 
-    //m_Player.Draw();
+    m_Player.Draw();
 
-    //m_Enemy.Draw();
+    m_Enemy.Draw();
 
     // ===== 2D =====
 
@@ -316,4 +316,6 @@ void GameScene::End()
 {
     m_Sound.End();
     m_SE.End();
+
+    m_Enemy.End();
 }
