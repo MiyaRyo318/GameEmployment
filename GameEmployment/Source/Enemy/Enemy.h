@@ -10,8 +10,6 @@ public:
 
     void Init();
 
-    void Load();
-
     void Update();
 
     void Draw();
@@ -21,6 +19,13 @@ public:
     void StartAttack();
 
     int GetAttackLane() const;
+
+    // HP
+    void Damage(int damage);
+
+    int GetHP() const;
+
+    bool IsDead() const;
 
 private:
 
@@ -41,4 +46,10 @@ private:
 
     // 攻撃タイマー
     int m_AttackTimer;
+
+    // HP
+    int m_HP;
+
+    // 最大HP
+    int m_MaxHP;
 };

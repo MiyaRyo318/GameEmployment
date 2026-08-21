@@ -17,6 +17,9 @@ Enemy::Enemy()
 
     m_AttackLane = 0;
     m_AttackTimer = 0;
+
+    m_MaxHP = 100;
+    m_HP = m_MaxHP;
 }
 
 void Enemy::Init()
@@ -36,15 +39,33 @@ void Enemy::Init()
 
     m_Position = VGet(0.0f, 80.0f, 20.0f);
 
-    m_Rotation = VGet(0.0f, 0.0f, 0.0f);
+    m_Rotation = VGet(
+        0.0f,
+        DX_PI_F / 2.0f,
+        0.0f);
 
-    m_Scale = VGet(5.0f, 5.0f, 5.0f);
+    m_Scale = VGet(
+        30.0f,
+        30.0f,
+        30.0f);
 
-    MV1SetPosition(m_Model, m_Position);
-    MV1SetRotationXYZ(m_Model, m_Rotation);
-    MV1SetScale(m_Model, m_Scale);
+    MV1SetPosition(
+        m_Model,
+        m_Position);
+
+    MV1SetRotationXYZ(
+        m_Model,
+        m_Rotation);
+
+    MV1SetScale(
+        m_Model,
+        m_Scale);
 
     m_AttackTimer = 180;
+
+    // HP初期化
+    m_MaxHP = 100;
+    m_HP = m_MaxHP;
 }
 
 void Enemy::Update()
@@ -69,14 +90,6 @@ void Enemy::StartAttack()
 
 void Enemy::Draw()
 {
-    // デバッグ用の赤い球
-    DrawSphere3D(
-        VGet(0.0f, 80.0f, 20.0f),
-        50.0f,
-        32,
-        GetColor(255, 0, 0),
-        GetColor(255, 0, 0),
-        TRUE);
 
     // Enemyモデル
     if (m_Model != -1)
@@ -104,4 +117,24 @@ void Enemy::End()
 int Enemy::GetAttackLane() const
 {
     return m_AttackLane;
+}
+
+void Enemy::Damage(int damage)
+{
+    m_HP -= damage;
+
+    if (m_HP < 0)
+    {
+        m_HP = 0;
+    }
+}
+
+int Enemy::GetHP() const
+{
+    return m_HP;
+}
+
+bool Enemy::IsDead() const
+{
+    return m_HP <= 0;
 }

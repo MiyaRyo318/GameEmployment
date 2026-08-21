@@ -67,18 +67,21 @@ void GameScene::Update()
 
                 note->SetJudge(true);
                 m_LastJudge = PERFECT;
+                m_Enemy.Damage(30);
                 break;
 
             case GREAT:
 
                 note->SetJudge(true);
                 m_LastJudge = GREAT;
+                m_Enemy.Damage(20);
                 break;
 
             case GOOD:
 
                 note->SetJudge(true);
                 m_LastJudge = GOOD;
+                m_Enemy.Damage(10);
                 break;
 
             case NONE:
@@ -106,18 +109,24 @@ void GameScene::Update()
             switch (judge)
             {
             case PERFECT:
+
                 note->SetJudge(true);
                 m_LastJudge = PERFECT;
+                m_Enemy.Damage(30);
                 break;
 
             case GREAT:
+
                 note->SetJudge(true);
                 m_LastJudge = GREAT;
+                m_Enemy.Damage(20);
                 break;
 
             case GOOD:
+
                 note->SetJudge(true);
                 m_LastJudge = GOOD;
+                m_Enemy.Damage(10);
                 break;
 
             case NONE:
@@ -310,6 +319,41 @@ void GameScene::Draw()
         GetColor(255, 255, 255),
         "%d / 100",
         m_Player.GetHP());
+
+    // HPÉQÅ[ÉWîwåi
+    DrawBox(
+        1280,
+        20,
+        1580,
+        50,
+        GetColor(80, 80, 80),
+        TRUE);
+
+    // HP
+    DrawBox(
+        1280,
+        20,
+        1280 + m_Enemy.GetHP() * 3,
+        50,
+        GetColor(255, 80, 80),
+        TRUE);
+
+    // òg
+    DrawBox(
+        1280,
+        20,
+        1580,
+        50,
+        GetColor(255, 255, 255),
+        FALSE);
+
+    // HPï\é¶
+    DrawFormatString(
+        1280,
+        55,
+        GetColor(255, 255, 255),
+        "ENEMY HP : %d / 100",
+        m_Enemy.GetHP());
 }
 
 void GameScene::End()
