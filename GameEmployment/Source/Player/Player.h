@@ -14,22 +14,31 @@ public:
 
     void Draw();
 
+    void End();
+
+    // ダメージ
     void Damage(int damage);
 
+    // HP取得
     int GetHP() const;
 
+    // 死亡判定
     bool IsDead() const;
-
-    int GetLane() const;
 
 private:
 
-    int m_HP;
-    int m_MaxHP;
+    // プレイヤーの位置
+    VECTOR m_Position;
 
+    // プレイヤーのレーン
     int m_Lane;
 
-    float m_X;
-    float m_Y;
-    float m_Z;
+    // HP
+    int m_HP;
+
+    // 最大HP
+    int m_MaxHP;
+
+    bool m_OldLeft;
+    bool m_OldRight;
 };

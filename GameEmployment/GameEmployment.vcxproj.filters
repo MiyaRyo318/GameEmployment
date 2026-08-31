@@ -34,6 +34,9 @@
     <Filter Include="Source\Player">
       <UniqueIdentifier>{417203ac-918f-45be-87dc-b8c381f66e28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Skybox">
+      <UniqueIdentifier>{afb68161-b524-40d0-9b32-fa6206e625dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -81,6 +84,9 @@
     <ClCompile Include="Source\Scene\TitleScene.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Skybox\Skybox.cpp">
+      <Filter>Source\Skybox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Scene\SceneManager.h">
@@ -124,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="Source\Scene\TitleScene.h">
       <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Skybox\Skybox.h">
+      <Filter>Source\Skybox</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

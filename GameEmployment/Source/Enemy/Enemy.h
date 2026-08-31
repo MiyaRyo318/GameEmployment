@@ -49,7 +49,11 @@ private:
 
     // HP
     int m_HP;
-
-    // 最大HP
     int m_MaxHP;
+
+    // 移動レーン
+    int m_MoveLane;
+
+    // 移動タイマー
+    int m_MoveTimer;
 };

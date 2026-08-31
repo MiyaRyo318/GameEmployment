@@ -4,8 +4,11 @@
 #include "../Sound/SE.h"
 #include "../Player/Player.h"
 #include "../Enemy/Enemy.h"
+#include "../Skybox/Skybox.h"
 
 SE m_SE;
+
+Skybox m_Skybox;
 
 GameScene::GameScene()
 {
@@ -22,6 +25,8 @@ void GameScene::Init()
 {
     // カメラ
     m_Camera.Init();
+
+    m_Skybox.Init();
 
     // プレイヤー
     m_Player.Init();
@@ -140,6 +145,8 @@ void GameScene::Update()
 
     m_Camera.Update();
 
+    m_Skybox.Update();
+
     m_Player.Update();
 
     m_Enemy.Update();
@@ -162,6 +169,8 @@ void GameScene::Update()
 void GameScene::Draw()
 {
     // ===== 3D =====
+
+    m_Skybox.Draw();
 
     m_Player.Draw();
 

@@ -20,6 +20,9 @@ Enemy::Enemy()
 
     m_MaxHP = 100;
     m_HP = m_MaxHP;
+
+    m_MoveLane = 0;
+    m_MoveTimer = 180;
 }
 
 void Enemy::Init()
@@ -66,17 +69,44 @@ void Enemy::Init()
     // HP初期化
     m_MaxHP = 100;
     m_HP = m_MaxHP;
+
+    m_MoveLane = 0;
+    m_MoveTimer = 180;
 }
 
 void Enemy::Update()
 {
-    m_AttackTimer--;
+    // 移動タイマー
+    m_MoveTimer--;
 
-    if (m_AttackTimer <= 0)
+    if (m_MoveTimer <= 0)
     {
-        StartAttack();
+        // -1 = 左
+        //  0 = 中央
+        //  1 = 右
+        m_MoveLane = rand() % 3 - 1;
 
-        m_AttackTimer = 180;
+        // レーン位置
+        if (m_MoveLane == -1)
+        {
+            m_Position.x = -100.0f;
+        }
+        else if (m_MoveLane == 0)
+        {
+            m_Position.x = 0.0f;
+        }
+        else if (m_MoveLane == 1)
+        {
+            m_Position.x = 100.0f;
+        }
+
+        // モデルの位置を更新
+        MV1SetPosition(
+            m_Model,
+            m_Position);
+
+        // 次の移動まで3秒
+        m_MoveTimer = 180;
     }
 }
 
