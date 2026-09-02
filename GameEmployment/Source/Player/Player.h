@@ -16,29 +16,37 @@ public:
 
     void End();
 
-    // ダメージ
     void Damage(int damage);
 
-    // HP取得
     int GetHP() const;
 
-    // 死亡判定
     bool IsDead() const;
 
 private:
 
+    // 3Dモデル
+    int m_Model;
+
     // プレイヤーの位置
     VECTOR m_Position;
 
-    // プレイヤーのレーン
+    // プレイヤーの回転
+    VECTOR m_Rotation;
+
+    // プレイヤーの大きさ
+    VECTOR m_Scale;
+
+    // 現在のレーン
+    // -1 = 左
+    //  0 = 中央
+    //  1 = 右
     int m_Lane;
 
     // HP
     int m_HP;
-
-    // 最大HP
     int m_MaxHP;
 
+    // キー入力の前フレーム
     bool m_OldLeft;
     bool m_OldRight;
 };
