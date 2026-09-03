@@ -8,6 +8,7 @@
 #include "../Sound/Sound.h"
 #include "../Player/Player.h"
 #include "../Enemy/Enemy.h"
+#include "../Bullet/BulletManager.h"
 
 class GameScene
 {
@@ -47,6 +48,8 @@ private:
     Player m_Player;
 
     Enemy m_Enemy;
+
+    BulletManager m_BulletManager;
 
     // ƒQ[ƒ€ŠJnŠÔ
     int m_StartTime;

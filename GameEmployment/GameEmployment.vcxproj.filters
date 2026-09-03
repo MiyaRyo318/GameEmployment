@@ -37,6 +37,9 @@
     <Filter Include="Source\Skybox">
       <UniqueIdentifier>{afb68161-b524-40d0-9b32-fa6206e625dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Bullet">
+      <UniqueIdentifier>{6ad52ca0-dd68-4bf5-bed9-483d6d2858b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -87,6 +90,12 @@
     <ClCompile Include="Source\Skybox\Skybox.cpp">
       <Filter>Source\Skybox</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Bullet\Bullet.cpp">
+      <Filter>Source\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet\BulletManager.cpp">
+      <Filter>Source\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Scene\SceneManager.h">
@@ -133,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="Source\Skybox\Skybox.h">
       <Filter>Source\Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bullet\Bullet.h">
+      <Filter>Source\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bullet\BulletManager.h">
+      <Filter>Source\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -37,6 +37,8 @@ void GameScene::Init()
     // ÉmÅ[Éc
     m_NoteManager.Init();
 
+    m_BulletManager.Init();
+
     m_Sound.Init();
     m_SE.Init();
 
@@ -150,6 +152,8 @@ void GameScene::Update()
     m_Player.Update();
 
     m_Enemy.Update();
+
+    m_BulletManager.Update();
 
     if (m_NoteManager.AutoMiss(m_CurrentTime))
     {
