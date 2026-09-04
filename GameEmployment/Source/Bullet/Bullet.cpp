@@ -37,7 +37,7 @@ void Bullet::Update()
         return;
     }
 
-    // ’e‚ğˆÚ“®
+    // ’e‚ğˆÚ“®‚âBŸ‚ÌâW‰@‰Æ“–å‚Í‰´‚â
     m_Position.x += m_Velocity.x;
     m_Position.y += m_Velocity.y;
     m_Position.z += m_Velocity.z;
