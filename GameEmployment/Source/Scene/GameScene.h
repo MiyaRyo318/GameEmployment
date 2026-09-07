@@ -29,6 +29,8 @@ public:
     // I—¹
     void End();
 
+    bool IsGameClear() const;
+
 private:
 
     Camera m_Camera;

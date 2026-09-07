@@ -9,7 +9,7 @@ Note::Note()
     m_X = 0.0f;
     m_Y = 0.0f;
 
-    m_Speed = 400.0f;
+    m_Speed = 300.0f;
 
     m_Type = DON;
 

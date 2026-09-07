@@ -2,6 +2,7 @@
 #include "DxLib.h"
 
 #include <algorithm>
+#include <cmath>
 
 BulletManager::BulletManager()
 {
@@ -59,4 +60,46 @@ void BulletManager::ShootPlayerBullet(VECTOR position)
         velocity);
 
     m_Bullets.push_back(bullet);
+}
+
+void BulletManager::CheckEnemyCollision(Enemy& enemy)
+{
+    if (enemy.IsDead())
+    {
+        return;
+    }
+
+    VECTOR enemyPos = enemy.GetPosition();
+    float enemyRadius = enemy.GetCollisionRadius();
+
+    for (auto& bullet : m_Bullets)
+    {
+        if (bullet.IsDead())
+        {
+            continue;
+        }
+
+        VECTOR bulletPos = bullet.GetPosition();
+
+        float dx = bulletPos.x - enemyPos.x;
+        float dy = bulletPos.y - enemyPos.y;
+        float dz = bulletPos.z - enemyPos.z;
+
+        float distance = sqrtf(
+            dx * dx +
+            dy * dy +
+            dz * dz
+        );
+
+        float bulletRadius = 10.0f;
+
+        if (distance <= enemyRadius + bulletRadius)
+        {
+            // “G‚É10ƒ_ƒ[ƒW
+            enemy.Damage(10);
+
+            // ’e‚ðÁ‚·
+            bullet.Destroy();
+        }
+    }
 }

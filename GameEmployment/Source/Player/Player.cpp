@@ -186,3 +186,8 @@ bool Player::IsDead() const
 {
     return m_HP <= 0;
 }
+
+VECTOR Player::GetPosition() const
+{
+    return m_Position;
+}

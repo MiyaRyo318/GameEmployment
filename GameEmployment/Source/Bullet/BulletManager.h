@@ -2,6 +2,7 @@
 
 #include "DxLib.h"
 #include "Bullet.h"
+#include "../Enemy/Enemy.h"
 
 #include <vector>
 
@@ -21,6 +22,8 @@ public:
 
     // ƒvƒŒƒCƒ„[‚©‚ç“G‚Ö’e‚ğ”­Ë
     void ShootPlayerBullet(VECTOR position);
+
+    void CheckEnemyCollision(Enemy& enemy);
 
 private:
 

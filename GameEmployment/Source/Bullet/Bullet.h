@@ -22,6 +22,10 @@ public:
     // ‰æ–ÊŠO‚È‚Ç‚ÅÁ‚·‚©
     bool IsDead() const;
 
+    VECTOR GetPosition() const;
+
+    void Destroy();
+
 private:
 
     // ’e‚ÌˆÊ’u

@@ -27,6 +27,10 @@ public:
 
     bool IsDead() const;
 
+    // 当たり判定
+    VECTOR GetPosition() const;
+    float GetCollisionRadius() const;
+
 private:
 
     // 3Dモデル
@@ -56,4 +60,7 @@ private:
 
     // 移動タイマー
     int m_MoveTimer;
+
+    // 当たり判定
+    float m_CollisionRadius;
 };

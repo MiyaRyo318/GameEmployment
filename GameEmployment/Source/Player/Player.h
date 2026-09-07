@@ -22,6 +22,9 @@ public:
 
     bool IsDead() const;
 
+    // 現在位置を取得
+    VECTOR GetPosition() const;
+
 private:
 
     // 3Dモデル
@@ -46,7 +49,7 @@ private:
     int m_HP;
     int m_MaxHP;
 
-    // キー入力の前フレーム
+    // キー入力
     bool m_OldLeft;
     bool m_OldRight;
 };

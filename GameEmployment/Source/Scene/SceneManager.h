@@ -2,11 +2,13 @@
 
 #include "GameScene.h"
 #include "TitleScene.h"
+#include "GameClear.h"
 
 enum SceneType
 {
     TITLE,
     GAME,
+    GAMECLEAR,
     RESULT
 };
 
@@ -29,4 +31,6 @@ private:
     GameScene m_GameScene;
 
     TitleScene m_TitleScene;
+
+    GameClear m_GameClear;
 };

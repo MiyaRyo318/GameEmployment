@@ -23,6 +23,9 @@ Enemy::Enemy()
 
     m_MoveLane = 0;
     m_MoveTimer = 180;
+
+    // “–‚½‚è”»’è‚Ì‘å‚«‚³
+    m_CollisionRadius = 50.0f;
 }
 
 void Enemy::Init()
@@ -167,4 +170,14 @@ int Enemy::GetHP() const
 bool Enemy::IsDead() const
 {
     return m_HP <= 0;
+}
+
+VECTOR Enemy::GetPosition() const
+{
+    return m_Position;
+}
+
+float Enemy::GetCollisionRadius() const
+{
+    return m_CollisionRadius;
 }

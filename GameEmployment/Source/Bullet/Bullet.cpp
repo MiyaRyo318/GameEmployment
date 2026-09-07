@@ -75,3 +75,13 @@ bool Bullet::IsDead() const
 {
     return m_Dead;
 }
+
+VECTOR Bullet::GetPosition() const
+{
+    return m_Position;
+}
+
+void Bullet::Destroy()
+{
+    m_Dead = true;
+}

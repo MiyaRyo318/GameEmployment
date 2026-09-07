@@ -74,21 +74,30 @@ void GameScene::Update()
 
                 note->SetJudge(true);
                 m_LastJudge = PERFECT;
-                m_Enemy.Damage(30);
+
+                m_BulletManager.ShootPlayerBullet(
+                    m_Player.GetPosition());
+
                 break;
 
             case GREAT:
 
                 note->SetJudge(true);
                 m_LastJudge = GREAT;
-                m_Enemy.Damage(20);
+
+                m_BulletManager.ShootPlayerBullet(
+                    m_Player.GetPosition());
+
                 break;
 
             case GOOD:
 
                 note->SetJudge(true);
                 m_LastJudge = GOOD;
-                m_Enemy.Damage(10);
+
+                m_BulletManager.ShootPlayerBullet(
+                    m_Player.GetPosition());
+
                 break;
 
             case NONE:
@@ -119,21 +128,30 @@ void GameScene::Update()
 
                 note->SetJudge(true);
                 m_LastJudge = PERFECT;
-                m_Enemy.Damage(30);
+
+                m_BulletManager.ShootPlayerBullet(
+                    m_Player.GetPosition());
+
                 break;
 
             case GREAT:
 
                 note->SetJudge(true);
                 m_LastJudge = GREAT;
-                m_Enemy.Damage(20);
+
+                m_BulletManager.ShootPlayerBullet(
+                    m_Player.GetPosition());
+
                 break;
 
             case GOOD:
 
                 note->SetJudge(true);
                 m_LastJudge = GOOD;
-                m_Enemy.Damage(10);
+
+                m_BulletManager.ShootPlayerBullet(
+                    m_Player.GetPosition());
+
                 break;
 
             case NONE:
@@ -154,6 +172,8 @@ void GameScene::Update()
     m_Enemy.Update();
 
     m_BulletManager.Update();
+
+    m_BulletManager.CheckEnemyCollision(m_Enemy);
 
     if (m_NoteManager.AutoMiss(m_CurrentTime))
     {
@@ -179,6 +199,8 @@ void GameScene::Draw()
     m_Player.Draw();
 
     m_Enemy.Draw();
+
+    m_BulletManager.Draw();
 
     // ===== 2D =====
 
@@ -375,4 +397,9 @@ void GameScene::End()
     m_SE.End();
 
     m_Enemy.End();
+}
+
+bool GameScene::IsGameClear() const
+{
+    return m_Enemy.IsDead();
 }

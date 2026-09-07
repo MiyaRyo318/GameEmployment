@@ -96,6 +96,9 @@
     <ClCompile Include="Source\Bullet\BulletManager.cpp">
       <Filter>Source\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Scene\GameClear.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Scene\SceneManager.h">
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="Source\Bullet\BulletManager.h">
       <Filter>Source\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\GameClear.h">
+      <Filter>Source\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
