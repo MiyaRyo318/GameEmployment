@@ -2,7 +2,7 @@
 
 void SceneManager::Init()
 {
-    // とりあえずゲームシーンから開始
+    // とりあえずゲームシーンから開始や。
     m_Scene = TITLE;
 
     m_TitleScene.Init();
