@@ -191,3 +191,8 @@ VECTOR Player::GetPosition() const
 {
     return m_Position;
 }
+
+float Player::GetCollisionRadius() const
+{
+    return 40.0f;
+}

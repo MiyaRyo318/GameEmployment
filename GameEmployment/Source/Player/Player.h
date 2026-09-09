@@ -25,6 +25,8 @@ public:
     // Œ»İˆÊ’u‚ğæ“¾
     VECTOR GetPosition() const;
 
+    float GetCollisionRadius() const;
+
 private:
 
     // 3Dƒ‚ƒfƒ‹

@@ -16,18 +16,24 @@ Bullet::Bullet()
     m_Radius = 10.0f;
 
     m_Dead = true;
+
+    m_Owner = BULLET_PLAYER;
 }
 
 void Bullet::Create(
     VECTOR position,
-    VECTOR velocity)
+    VECTOR velocity,
+    BulletOwner owner)
 {
     m_Position = position;
+
     m_Velocity = velocity;
 
     m_Radius = 10.0f;
 
     m_Dead = false;
+
+    m_Owner = owner;
 }
 
 void Bullet::Update()
@@ -37,19 +43,13 @@ void Bullet::Update()
         return;
     }
 
-    // 弾を移動や。次の禪院家当主は俺や
     m_Position.x += m_Velocity.x;
     m_Position.y += m_Velocity.y;
     m_Position.z += m_Velocity.z;
 
-    // 敵側まで飛んだら削除
-    if (m_Position.z > 1000.0f)
-    {
-        m_Dead = true;
-    }
-
-    // プレイヤー側まで飛んだら削除
-    if (m_Position.z < -1000.0f)
+    // 範囲外に出たら削除
+    if (m_Position.z > 1000.0f ||
+        m_Position.z < -1000.0f)
     {
         m_Dead = true;
     }
@@ -62,13 +62,28 @@ void Bullet::Draw()
         return;
     }
 
-    DrawSphere3D(
-        m_Position,
-        m_Radius,
-        16,
-        GetColor(255, 255, 0),
-        GetColor(255, 255, 0),
-        TRUE);
+    if (m_Owner == BULLET_PLAYER)
+    {
+        // プレイヤーの弾
+        DrawSphere3D(
+            m_Position,
+            m_Radius,
+            16,
+            GetColor(255, 255, 0),
+            GetColor(255, 255, 0),
+            TRUE);
+    }
+    else
+    {
+        // 敵の弾
+        DrawSphere3D(
+            m_Position,
+            m_Radius,
+            16,
+            GetColor(255, 0, 0),
+            GetColor(255, 0, 0),
+            TRUE);
+    }
 }
 
 bool Bullet::IsDead() const
@@ -84,4 +99,9 @@ VECTOR Bullet::GetPosition() const
 void Bullet::Destroy()
 {
     m_Dead = true;
+}
+
+BulletOwner Bullet::GetOwner() const
+{
+    return m_Owner;
 }

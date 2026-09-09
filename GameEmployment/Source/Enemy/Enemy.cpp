@@ -26,6 +26,8 @@ Enemy::Enemy()
 
     // “–‚½‚è”»’è‚Ì‘å‚«‚³
     m_CollisionRadius = 50.0f;
+
+    m_ShootTimer = 120;
 }
 
 void Enemy::Init()
@@ -75,6 +77,8 @@ void Enemy::Init()
 
     m_MoveLane = 0;
     m_MoveTimer = 180;
+
+    m_ShootTimer = 120;
 }
 
 void Enemy::Update()
@@ -180,4 +184,22 @@ VECTOR Enemy::GetPosition() const
 float Enemy::GetCollisionRadius() const
 {
     return m_CollisionRadius;
+}
+
+bool Enemy::CanShoot()
+{
+    m_ShootTimer--;
+
+    if (m_ShootTimer <= 0)
+    {
+        // ƒ‰ƒ“ƒ_ƒ€‚ÈƒŒ[ƒ“‚ðŒˆ‚ß‚é
+        StartAttack();
+
+        // ŽŸ‚Ì”­ŽË‚Ü‚Å‘Ò‚Â
+        m_ShootTimer = 120;
+
+        return true;
+    }
+
+    return false;
 }

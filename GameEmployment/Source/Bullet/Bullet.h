@@ -2,41 +2,43 @@
 
 #include "DxLib.h"
 
+enum BulletOwner
+{
+    BULLET_PLAYER,
+    BULLET_ENEMY
+};
+
 class Bullet
 {
 public:
 
     Bullet();
 
-    // 弾を作成
     void Create(
         VECTOR position,
-        VECTOR velocity);
+        VECTOR velocity,
+        BulletOwner owner);
 
-    // 更新
     void Update();
 
-    // 描画
     void Draw();
 
-    // 画面外などで消すか
     bool IsDead() const;
 
     VECTOR GetPosition() const;
 
     void Destroy();
 
+    BulletOwner GetOwner() const;
+
 private:
 
-    // 弾の位置
     VECTOR m_Position;
-
-    // 弾の速度
     VECTOR m_Velocity;
 
-    // 弾の大きさ
     float m_Radius;
 
-    // 生存フラグ
     bool m_Dead;
+
+    BulletOwner m_Owner;
 };

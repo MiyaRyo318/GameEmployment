@@ -171,9 +171,18 @@ void GameScene::Update()
 
     m_Enemy.Update();
 
+    if (m_Enemy.CanShoot())
+    {
+        m_BulletManager.ShootEnemyBullet(
+            m_Enemy.GetPosition(),
+            m_Enemy.GetAttackLane());
+    }
+
     m_BulletManager.Update();
 
     m_BulletManager.CheckEnemyCollision(m_Enemy);
+
+    m_BulletManager.CheckPlayerCollision(m_Player);
 
     if (m_NoteManager.AutoMiss(m_CurrentTime))
     {

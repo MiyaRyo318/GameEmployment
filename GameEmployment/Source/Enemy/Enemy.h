@@ -31,6 +31,8 @@ public:
     VECTOR GetPosition() const;
     float GetCollisionRadius() const;
 
+    bool CanShoot();
+
 private:
 
     // 3Dƒ‚ƒfƒ‹
@@ -63,4 +65,6 @@ private:
 
     // “–‚½‚è”»’è
     float m_CollisionRadius;
+
+    int m_ShootTimer;
 };
