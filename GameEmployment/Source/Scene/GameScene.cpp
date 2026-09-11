@@ -188,7 +188,7 @@ void GameScene::Update()
     {
         m_LastJudge = MISS;
 
-        m_Player.Damage(10);
+        //m_Player.Damage(10);
     }
 
     if (m_Player.IsDead())
@@ -402,6 +402,9 @@ void GameScene::Draw()
 
 void GameScene::End()
 {
+    // BGM‚ð’âŽ~
+    m_Sound.StopBGM();
+
     m_Sound.End();
     m_SE.End();
 
@@ -411,4 +414,9 @@ void GameScene::End()
 bool GameScene::IsGameClear() const
 {
     return m_Enemy.IsDead();
+}
+
+bool GameScene::IsGameOver() const
+{
+    return m_Player.IsDead();
 }

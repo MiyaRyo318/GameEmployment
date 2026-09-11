@@ -31,6 +31,8 @@ public:
 
     bool IsGameClear() const;
 
+    bool IsGameOver() const;
+
 private:
 
     Camera m_Camera;

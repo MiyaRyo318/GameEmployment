@@ -116,25 +116,9 @@ void BulletManager::ShootEnemyBullet(
 {
     Bullet bullet;
 
-    float targetX = 0.0f;
-
-    if (lane == -1)
-    {
-        targetX = -70.0f;
-    }
-    else if (lane == 0)
-    {
-        targetX = 0.0f;
-    }
-    else if (lane == 1)
-    {
-        targetX = 70.0f;
-    }
-
-    float dx = targetX - position.x;
-
+    // 真っすぐプレイヤー方向へ飛ばす
     VECTOR velocity = VGet(
-        dx * 0.02f,
+        0.0f,
         0.0f,
         -5.0f);
 
