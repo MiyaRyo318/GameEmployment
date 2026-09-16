@@ -19,9 +19,6 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
-    // =====================================
-    // 操作説明画面
-    // =====================================
     if (m_MenuState == MenuState::OPERATION)
     {
         bool zKey = CheckHitKey(KEY_INPUT_Z);
@@ -36,10 +33,6 @@ void TitleScene::Update()
 
         return;
     }
-
-    // =====================================
-    // タイトルメニュー画面
-    // =====================================
 
     bool upKey = CheckHitKey(KEY_INPUT_UP);
     bool downKey = CheckHitKey(KEY_INPUT_DOWN);
@@ -95,9 +88,6 @@ void TitleScene::Draw()
     // タイトル画像
     DrawGraph(0, 0, m_TitleImage, TRUE);
 
-    // =====================================
-    // 操作説明画面
-    // =====================================
     if (m_MenuState == MenuState::OPERATION)
     {
         // 黒い半透明風の背景
@@ -119,10 +109,6 @@ void TitleScene::Draw()
 
         return;
     }
-
-    // =====================================
-    // タイトルメニュー画面
-    // =====================================
 
     int white = GetColor(255, 255, 255);
     int yellow = GetColor(255, 255, 0);
