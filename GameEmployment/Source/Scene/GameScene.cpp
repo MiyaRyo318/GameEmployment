@@ -167,22 +167,20 @@ void GameScene::Update()
 
     m_Skybox.Update();
 
-    m_Player.Update();
+    //m_Player.Update();
 
-    m_Enemy.Update();
+    //m_Enemy.Update();
 
     if (m_Enemy.CanShoot())
     {
-        m_BulletManager.ShootEnemyBullet(
-            m_Enemy.GetPosition(),
-            m_Enemy.GetAttackLane());
+        //m_BulletManager.ShootEnemyBullet(m_Enemy.GetPosition(),m_Enemy.GetAttackLane());
     }
 
-    m_BulletManager.Update();
+    //m_BulletManager.Update();
 
-    m_BulletManager.CheckEnemyCollision(m_Enemy);
+    //m_BulletManager.CheckEnemyCollision(m_Enemy);
 
-    m_BulletManager.CheckPlayerCollision(m_Player);
+    //m_BulletManager.CheckPlayerCollision(m_Player);
 
     if (m_NoteManager.AutoMiss(m_CurrentTime))
     {
@@ -209,7 +207,7 @@ void GameScene::Draw()
 
     m_Enemy.Draw();
 
-    m_BulletManager.Draw();
+    //m_BulletManager.Draw();
 
     // ===== 2D =====
 
