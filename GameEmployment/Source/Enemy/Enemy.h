@@ -33,6 +33,8 @@ public:
 
     bool CanShoot();
 
+    void AutoMove(float deltaTime);
+
 private:
 
     // 3Dƒ‚ƒfƒ‹

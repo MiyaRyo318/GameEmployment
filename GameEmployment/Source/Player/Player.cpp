@@ -27,6 +27,8 @@ Player::Player()
 
     m_OldLeft = false;
     m_OldRight = false;
+
+    m_AutoMoveTime = 0.0f;
 }
 
 void Player::Init()
@@ -80,6 +82,8 @@ void Player::Init()
 
     m_OldLeft = false;
     m_OldRight = false;
+
+    m_AutoMoveTime = 0.0f;
 }
 
 void Player::Update()
@@ -195,4 +199,48 @@ VECTOR Player::GetPosition() const
 float Player::GetCollisionRadius() const
 {
     return 40.0f;
+}
+
+void Player::AutoMove(float deltaTime)
+{
+    m_AutoMoveTime += deltaTime;
+
+    // 2秒ごとにレーンを切り替える
+    int autoLane =
+        static_cast<int>(m_AutoMoveTime / 2.0f) % 3;
+
+    if (autoLane == 0)
+    {
+        m_Lane = -1;
+    }
+    else if (autoLane == 1)
+    {
+        m_Lane = 0;
+    }
+    else
+    {
+        m_Lane = 1;
+    }
+
+    // レーンに応じてX座標を変更
+    if (m_Lane == -1)
+    {
+        m_Position.x = -70.0f;
+    }
+    else if (m_Lane == 0)
+    {
+        m_Position.x = 0.0f;
+    }
+    else if (m_Lane == 1)
+    {
+        m_Position.x = 70.0f;
+    }
+
+    // モデルの位置を更新
+    if (m_Model != -1)
+    {
+        MV1SetPosition(
+            m_Model,
+            m_Position);
+    }
 }

@@ -12,6 +12,9 @@ public:
 
     void Update();
 
+    // 自動移動
+    void AutoMove(float deltaTime);
+
     void Draw();
 
     void End();
@@ -22,36 +25,28 @@ public:
 
     bool IsDead() const;
 
-    // 現在位置を取得
     VECTOR GetPosition() const;
 
     float GetCollisionRadius() const;
 
 private:
 
-    // 3Dモデル
     int m_Model;
 
-    // プレイヤーの位置
     VECTOR m_Position;
 
-    // プレイヤーの回転
     VECTOR m_Rotation;
 
-    // プレイヤーの大きさ
     VECTOR m_Scale;
 
-    // 現在のレーン
-    // -1 = 左
-    //  0 = 中央
-    //  1 = 右
     int m_Lane;
 
-    // HP
     int m_HP;
     int m_MaxHP;
 
-    // キー入力
     bool m_OldLeft;
     bool m_OldRight;
+
+    // 自動移動用
+    float m_AutoMoveTime;
 };

@@ -14,6 +14,7 @@ GameScene::GameScene()
 {
     m_StartTime = 0;
     m_CurrentTime = 0.0f;
+    m_AutoMoveTime = 0.0f;
 }
 
 GameScene::~GameScene()
@@ -46,6 +47,8 @@ void GameScene::Init()
 
     // ゲーム開始時間
     m_StartTime = GetNowCount();
+
+    m_AutoMoveTime = 0.0f;
 }
 
 void GameScene::Update()
@@ -167,9 +170,14 @@ void GameScene::Update()
 
     m_Skybox.Update();
 
-    //m_Player.Update();
+    // プレイヤーの手動操作は停止
+    // m_Player.Update();
 
-    //m_Enemy.Update();
+    // プレイヤーを自動移動
+    m_Player.AutoMove(1.0f / 60.0f);
+
+    // 敵も自動移動させる場合
+    m_Enemy.AutoMove(1.0f / 60.0f);
 
     if (m_Enemy.CanShoot())
     {
@@ -186,7 +194,7 @@ void GameScene::Update()
     {
         m_LastJudge = MISS;
 
-        //m_Player.Damage(10);
+        m_Player.Damage(10);
     }
 
     if (m_Player.IsDead())

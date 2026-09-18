@@ -203,3 +203,40 @@ bool Enemy::CanShoot()
 
     return false;
 }
+
+void Enemy::AutoMove(float)
+{
+    m_MoveTimer--;
+
+    if (m_MoveTimer <= 0)
+    {
+        m_MoveLane++;
+
+        if (m_MoveLane > 1)
+        {
+            m_MoveLane = -1;
+        }
+
+        if (m_MoveLane == -1)
+        {
+            m_Position.x = -100.0f;
+        }
+        else if (m_MoveLane == 0)
+        {
+            m_Position.x = 0.0f;
+        }
+        else if (m_MoveLane == 1)
+        {
+            m_Position.x = 100.0f;
+        }
+
+        if (m_Model != -1)
+        {
+            MV1SetPosition(
+                m_Model,
+                m_Position);
+        }
+
+        m_MoveTimer = 180;
+    }
+}

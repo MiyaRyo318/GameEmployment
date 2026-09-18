@@ -61,5 +61,8 @@ private:
     // Œ»İ‚ÌŒo‰ßŠÔ(•b)
     float m_CurrentTime;
 
+    // ©“®ˆÚ“®—p‚ÌŒo‰ßŠÔ
+    float m_AutoMoveTime;
+
     JudgeType m_LastJudge = NONE;
 };
