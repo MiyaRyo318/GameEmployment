@@ -6,9 +6,9 @@ Player::Player()
     m_Model = -1;
 
     m_Position = VGet(
-        0.0f,
-        30.0f,
-        -100.0f);
+        -100.0f,
+        60.0f,
+        0.0f);
 
     m_Rotation = VGet(
         0.0f,
@@ -47,96 +47,36 @@ void Player::Init()
         return;
     }
 
-    // プレイヤー位置
+    // プレイヤーを画面左側に配置
     m_Position = VGet(
-        0.0f,
+        -120.0f,
         60.0f,
-        -200.0f);
+        0.0f);
 
     m_Rotation = VGet(
         0.0f,
-        DX_PI_F / 2.0f,
+        0.0f,
         0.0f);
 
-    // とりあえず大きくする
     m_Scale = VGet(
         10.0f,
         10.0f,
         10.0f);
 
-    MV1SetPosition(
-        m_Model,
-        m_Position);
-
-    MV1SetRotationXYZ(
-        m_Model,
-        m_Rotation);
-
-    MV1SetScale(
-        m_Model,
-        m_Scale);
+    MV1SetPosition(m_Model, m_Position);
+    MV1SetRotationXYZ(m_Model, m_Rotation);
+    MV1SetScale(m_Model, m_Scale);
 
     m_Lane = 0;
-
     m_HP = m_MaxHP;
-
     m_OldLeft = false;
     m_OldRight = false;
-
     m_AutoMoveTime = 0.0f;
 }
 
 void Player::Update()
 {
-    bool left =
-        CheckHitKey(KEY_INPUT_LEFT);
-
-    bool right =
-        CheckHitKey(KEY_INPUT_RIGHT);
-
-    // LEFTを押した瞬間
-    if (left && !m_OldLeft)
-    {
-        if (m_Lane > -1)
-        {
-            m_Lane--;
-        }
-    }
-
-    // RIGHTを押した瞬間
-    if (right && !m_OldRight)
-    {
-        if (m_Lane < 1)
-        {
-            m_Lane++;
-        }
-    }
-
-    // レーンに応じてX座標を変更
-    if (m_Lane == -1)
-    {
-        m_Position.x = -70.0f;
-    }
-    else if (m_Lane == 0)
-    {
-        m_Position.x = 0.0f;
-    }
-    else if (m_Lane == 1)
-    {
-        m_Position.x = 70.0f;
-    }
-
-    // モデルの位置を更新
-    if (m_Model != -1)
-    {
-        MV1SetPosition(
-            m_Model,
-            m_Position);
-    }
-
-    // 現在のキー状態を保存
-    m_OldLeft = left;
-    m_OldRight = right;
+    // 横スクロール中は手動移動を行わない
 }
 
 void Player::Draw()
@@ -203,44 +143,6 @@ float Player::GetCollisionRadius() const
 
 void Player::AutoMove(float deltaTime)
 {
-    m_AutoMoveTime += deltaTime;
-
-    // 2秒ごとにレーンを切り替える
-    int autoLane =
-        static_cast<int>(m_AutoMoveTime / 2.0f) % 3;
-
-    if (autoLane == 0)
-    {
-        m_Lane = -1;
-    }
-    else if (autoLane == 1)
-    {
-        m_Lane = 0;
-    }
-    else
-    {
-        m_Lane = 1;
-    }
-
-    // レーンに応じてX座標を変更
-    if (m_Lane == -1)
-    {
-        m_Position.x = -70.0f;
-    }
-    else if (m_Lane == 0)
-    {
-        m_Position.x = 0.0f;
-    }
-    else if (m_Lane == 1)
-    {
-        m_Position.x = 70.0f;
-    }
-
-    // モデルの位置を更新
-    if (m_Model != -1)
-    {
-        MV1SetPosition(
-            m_Model,
-            m_Position);
-    }
+    // プレイヤーは画面左側に固定する
+    // 現在は自動移動させない
 }

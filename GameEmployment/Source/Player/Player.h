@@ -5,38 +5,28 @@
 class Player
 {
 public:
-
     Player();
 
     void Init();
-
     void Update();
-
-    // Ž©“®ˆÚ“®
-    void AutoMove(float deltaTime);
-
     void Draw();
-
     void End();
 
     void Damage(int damage);
 
     int GetHP() const;
-
     bool IsDead() const;
 
     VECTOR GetPosition() const;
-
     float GetCollisionRadius() const;
 
-private:
+    void AutoMove(float deltaTime);
 
+private:
     int m_Model;
 
     VECTOR m_Position;
-
     VECTOR m_Rotation;
-
     VECTOR m_Scale;
 
     int m_Lane;
@@ -47,6 +37,5 @@ private:
     bool m_OldLeft;
     bool m_OldRight;
 
-    // Ž©“®ˆÚ“®—p
     float m_AutoMoveTime;
 };

@@ -19,6 +19,9 @@ Skybox::Skybox()
         20.0f,
         20.0f,
         20.0f);
+
+    // 背景のスクロール速度
+    m_ScrollSpeed = 0.5f;
 }
 
 void Skybox::Init()
@@ -52,6 +55,24 @@ void Skybox::Init()
 
 void Skybox::Update()
 {
+    if (m_Model == -1)
+    {
+        return;
+    }
+
+    // 背景を左方向へ移動
+    m_Position.x -= m_ScrollSpeed;
+
+    // 一定距離まで移動したら右側へ戻す
+    if (m_Position.x < -1000.0f)
+    {
+        m_Position.x = 1000.0f;
+    }
+
+    // モデルの位置を更新
+    MV1SetPosition(
+        m_Model,
+        m_Position);
 }
 
 void Skybox::Draw()

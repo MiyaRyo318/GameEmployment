@@ -6,7 +6,10 @@ Enemy::Enemy()
 {
     m_Model = -1;
 
-    m_Position = VGet(0.0f, 0.0f, 10.0f);
+    m_Position = VGet(
+        200.0f,
+        80.0f,
+        0.0f);
 
     m_Rotation = VGet(
         0.0f,
@@ -45,11 +48,15 @@ void Enemy::Init()
         return;
     }
 
-    m_Position = VGet(0.0f, 80.0f, 20.0f);
+    // 敵を画面右側に配置
+    m_Position = VGet(
+        120.0f,
+        80.0f,
+        0.0f);
 
     m_Rotation = VGet(
         0.0f,
-        DX_PI_F / 2.0f,
+        -53.5f,
         0.0f);
 
     m_Scale = VGet(
@@ -57,64 +64,21 @@ void Enemy::Init()
         30.0f,
         30.0f);
 
-    MV1SetPosition(
-        m_Model,
-        m_Position);
-
-    MV1SetRotationXYZ(
-        m_Model,
-        m_Rotation);
-
-    MV1SetScale(
-        m_Model,
-        m_Scale);
+    MV1SetPosition(m_Model, m_Position);
+    MV1SetRotationXYZ(m_Model, m_Rotation);
+    MV1SetScale(m_Model, m_Scale);
 
     m_AttackTimer = 180;
-
-    // HP初期化
     m_MaxHP = 100;
     m_HP = m_MaxHP;
-
     m_MoveLane = 0;
     m_MoveTimer = 180;
-
     m_ShootTimer = 120;
 }
 
 void Enemy::Update()
 {
-    // 移動タイマー
-    m_MoveTimer--;
-
-    if (m_MoveTimer <= 0)
-    {
-        // -1 = 左
-        //  0 = 中央
-        //  1 = 右
-        m_MoveLane = rand() % 3 - 1;
-
-        // レーン位置
-        if (m_MoveLane == -1)
-        {
-            m_Position.x = -100.0f;
-        }
-        else if (m_MoveLane == 0)
-        {
-            m_Position.x = 0.0f;
-        }
-        else if (m_MoveLane == 1)
-        {
-            m_Position.x = 100.0f;
-        }
-
-        // モデルの位置を更新
-        MV1SetPosition(
-            m_Model,
-            m_Position);
-
-        // 次の移動まで3秒
-        m_MoveTimer = 180;
-    }
+    // 横スクロール中は通常のレーン移動を行わない
 }
 
 void Enemy::StartAttack()
@@ -204,39 +168,7 @@ bool Enemy::CanShoot()
     return false;
 }
 
-void Enemy::AutoMove(float)
+void Enemy::AutoMove(float deltaTime)
 {
-    m_MoveTimer--;
-
-    if (m_MoveTimer <= 0)
-    {
-        m_MoveLane++;
-
-        if (m_MoveLane > 1)
-        {
-            m_MoveLane = -1;
-        }
-
-        if (m_MoveLane == -1)
-        {
-            m_Position.x = -100.0f;
-        }
-        else if (m_MoveLane == 0)
-        {
-            m_Position.x = 0.0f;
-        }
-        else if (m_MoveLane == 1)
-        {
-            m_Position.x = 100.0f;
-        }
-
-        if (m_Model != -1)
-        {
-            MV1SetPosition(
-                m_Model,
-                m_Position);
-        }
-
-        m_MoveTimer = 180;
-    }
+    
 }
