@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include <cstdlib>
 
 void SceneManager::Init()
 {
@@ -22,26 +23,51 @@ void SceneManager::Update()
 
             m_Scene = GAME;
         }
+        else if (m_TitleScene.IsExitGame())
+        {
+            // ゲーム終了
+            DxLib_End();
+            exit(0);
+        }
 
         break;
 
     case GAME:
+
         m_GameScene.Update();
 
-        if (m_GameScene.IsGameClear())
+        // リトライ
+        if (m_GameScene.IsRetry())
         {
-            // ゲームシーン終了
+            m_GameScene.End();
+
+            m_GameScene.Init();
+        }
+        // タイトルに戻る
+        else if (m_GameScene.IsReturnTitle())
+        {
+            m_GameScene.End();
+
+            m_TitleScene.Init();
+
+            m_Scene = TITLE;
+        }
+        // ゲームクリア
+        else if (m_GameScene.IsGameClear())
+        {
             m_GameScene.End();
 
             m_GameClear.Init();
+
             m_Scene = GAMECLEAR;
         }
+        // ゲームオーバー
         else if (m_GameScene.IsGameOver())
         {
-            // ゲームシーン終了
             m_GameScene.End();
 
             m_GameOver.Init();
+
             m_Scene = GAMEOVER;
         }
 

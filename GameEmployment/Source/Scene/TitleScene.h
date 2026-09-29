@@ -14,6 +14,8 @@ public:
 
     bool IsStart() const;
 
+    bool IsExitGame() const;
+
 private:
 
     enum class MenuState
@@ -25,10 +27,12 @@ private:
     enum class MenuSelect
     {
         GAME_START,
-        OPERATION
+        OPERATION,
+        EXIT_GAME
     };
 
     bool m_IsStart = false;
+    bool m_IsExitGame = false;
 
     int m_TitleImage = -1;
 
@@ -36,7 +40,6 @@ private:
 
     MenuSelect m_MenuSelect = MenuSelect::GAME_START;
 
-    // ÉLÅ[ì¸óÕÇÃòAë±îΩâûñhé~
     bool m_IsUpKey = false;
     bool m_IsDownKey = false;
     bool m_IsSpaceKey = false;

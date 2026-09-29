@@ -7,10 +7,8 @@ public:
     Sound();
     ~Sound();
 
-    // “Ç‚İ‚İ
     bool Init();
 
-    // ‰ğ•ú
     void End();
 
     // BGMÄ¶
@@ -18,6 +16,9 @@ public:
 
     // BGM’â~
     void StopBGM();
+
+    // BGM‚ªI—¹‚µ‚½‚©
+    bool IsBGMFinished() const;
 
 private:
 

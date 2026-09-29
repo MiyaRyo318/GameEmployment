@@ -18,30 +18,20 @@ int WINAPI WinMain(
 
     SetDrawScreen(DX_SCREEN_BACK);
 
-
     SceneManager scene;
 
     scene.Init();
 
-
     while (ProcessMessage() == 0)
     {
-
-        if (CheckHitKey(KEY_INPUT_ESCAPE))
-            break;
-
-
         scene.Update();
-
 
         ClearDrawScreen();
 
         scene.Draw();
 
         ScreenFlip();
-
     }
-
 
     scene.End();
 

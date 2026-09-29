@@ -15,6 +15,14 @@ GameScene::GameScene()
     m_StartTime = 0;
     m_CurrentTime = 0.0f;
     m_AutoMoveTime = 0.0f;
+
+    m_IsPaused = false;
+    m_PauseSelect = 0;
+
+    m_IsRetry = false;
+    m_IsReturnTitle = false;
+
+    m_BGMStarted = false;
 }
 
 GameScene::~GameScene()
@@ -24,6 +32,15 @@ GameScene::~GameScene()
 
 void GameScene::Init()
 {
+    // ポーズ状態を初期化
+    m_IsPaused = false;
+    m_PauseSelect = 0;
+
+    m_IsRetry = false;
+    m_IsReturnTitle = false;
+
+    m_LastJudge = NONE;
+
     // カメラ
     m_Camera.Init();
 
@@ -45,18 +62,124 @@ void GameScene::Init()
 
     m_Sound.PlayBGM();
 
+    m_BGMStarted = true;
+
     // ゲーム開始時間
     m_StartTime = GetNowCount();
 
+    m_CurrentTime = 0.0f;
     m_AutoMoveTime = 0.0f;
 }
 
 void GameScene::Update()
 {
+    m_Input.Update();
+
+    // =========================
+    // ポーズ開始
+    // =========================
+
+    if (!m_IsPaused)
+    {
+        if (m_Input.IsPauseTrigger())
+        {
+            m_IsPaused = true;
+
+            // 初期選択は「再開」
+            m_PauseSelect = 0;
+
+            // BGM停止
+            m_Sound.StopBGM();
+
+            return;
+        }
+    }
+
+    // =========================
+    // ポーズ中
+    // =========================
+
+    if (m_IsPaused)
+    {
+        // ESCで再開
+        if (m_Input.IsPauseTrigger())
+        {
+            m_IsPaused = false;
+
+            m_StartTime =
+                GetNowCount()
+                - (int)(m_CurrentTime * 1000.0f);
+
+            m_Sound.PlayBGM();
+
+            return;
+        }
+
+        // 上
+        if (m_Input.IsUpTrigger())
+        {
+            m_PauseSelect--;
+
+            if (m_PauseSelect < 0)
+            {
+                m_PauseSelect = 2;
+            }
+        }
+
+        // 下
+        if (m_Input.IsDownTrigger())
+        {
+            m_PauseSelect++;
+
+            if (m_PauseSelect > 2)
+            {
+                m_PauseSelect = 0;
+            }
+        }
+
+        // 決定
+        if (m_Input.IsEnterTrigger())
+        {
+            if (m_PauseSelect == 0)
+            {
+                // 再開
+                m_IsPaused = false;
+
+                m_StartTime =
+                    GetNowCount()
+                    - (int)(m_CurrentTime * 1000.0f);
+
+                m_Sound.PlayBGM();
+            }
+            else if (m_PauseSelect == 1)
+            {
+                // リトライ
+                m_IsRetry = true;
+                return;
+            }
+            else if (m_PauseSelect == 2)
+            {
+                // タイトルに戻る
+                m_IsReturnTitle = true;
+                return;
+            }
+        }
+
+        return;
+    }
+
     // 経過時間(秒)
     m_CurrentTime = (GetNowCount() - m_StartTime) / 1000.0f;
 
-    m_Input.Update();
+    if (m_BGMStarted && m_Sound.IsBGMFinished())
+    {
+        m_Sound.StopBGM();
+
+        // 曲終了 = ゲームクリア
+        m_Enemy.Damage(m_Enemy.GetHP());
+
+        return;
+    }
 
     if (m_Input.IsDonTrigger())
     {
@@ -404,6 +527,85 @@ void GameScene::Draw()
         GetColor(255, 255, 255),
         "ENEMY HP : %d / 100",
         m_Enemy.GetHP());
+
+    // =========================
+// ポーズ画面
+// =========================
+
+    if (m_IsPaused)
+    {
+        // 画面を暗くする
+        SetDrawBlendMode(
+            DX_BLENDMODE_ALPHA,
+            180);
+
+        DrawBox(
+            0,
+            0,
+            1600,
+            900,
+            GetColor(0, 0, 0),
+            TRUE);
+
+        SetDrawBlendMode(
+            DX_BLENDMODE_NOBLEND,
+            0);
+
+        int white =
+            GetColor(255, 255, 255);
+
+        int yellow =
+            GetColor(255, 255, 0);
+
+        // PAUSE
+        DrawString(
+            760,
+            180,
+            "PAUSE",
+            white);
+
+        // メニュー
+        int resumeColor = white;
+        int retryColor = white;
+        int titleColor = white;
+
+        if (m_PauseSelect == 0)
+        {
+            resumeColor = yellow;
+        }
+        else if (m_PauseSelect == 1)
+        {
+            retryColor = yellow;
+        }
+        else if (m_PauseSelect == 2)
+        {
+            titleColor = yellow;
+        }
+
+        DrawString(
+            700,
+            350,
+            "再開",
+            resumeColor);
+
+        DrawString(
+            700,
+            420,
+            "リトライ",
+            retryColor);
+
+        DrawString(
+            700,
+            490,
+            "タイトルに戻る",
+            titleColor);
+
+        DrawString(
+            600,
+            600,
+            "↑ / ↓：選択    ENTER：決定    ESC：再開",
+            white);
+    }
 }
 
 void GameScene::End()
@@ -425,4 +627,14 @@ bool GameScene::IsGameClear() const
 bool GameScene::IsGameOver() const
 {
     return m_Player.IsDead();
+}
+
+bool GameScene::IsRetry() const
+{
+    return m_IsRetry;
+}
+
+bool GameScene::IsReturnTitle() const
+{
+    return m_IsReturnTitle;
 }

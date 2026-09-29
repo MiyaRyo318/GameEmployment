@@ -40,11 +40,22 @@ void Sound::PlayBGM()
     {
         PlaySoundMem(
             m_BGMHandle,
-            DX_PLAYTYPE_LOOP);
+            DX_PLAYTYPE_BACK,
+            FALSE);
     }
 }
 
 void Sound::StopBGM()
 {
     StopSoundMem(m_BGMHandle);
+}
+
+bool Sound::IsBGMFinished() const
+{
+    if (m_BGMHandle == -1)
+    {
+        return false;
+    }
+
+    return CheckSoundMem(m_BGMHandle) == 0;
 }

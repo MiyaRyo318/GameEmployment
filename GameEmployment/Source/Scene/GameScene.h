@@ -17,29 +17,25 @@ public:
     GameScene();
     ~GameScene();
 
-    // 初期化
     void Init();
 
-    // 更新
     void Update();
 
-    // 描画
     void Draw();
 
-    // 終了
     void End();
 
     bool IsGameClear() const;
 
     bool IsGameOver() const;
 
+    // ポーズ結果
+    bool IsRetry() const;
+    bool IsReturnTitle() const;
+
 private:
 
     Camera m_Camera;
-
-    //Player m_Player;
-
-    //Enemy m_Monster;
 
     NoteManager m_NoteManager;
 
@@ -55,14 +51,26 @@ private:
 
     BulletManager m_BulletManager;
 
-    // ゲーム開始時間
     int m_StartTime;
 
-    // 現在の経過時間(秒)
     float m_CurrentTime;
 
-    // 自動移動用の経過時間
     float m_AutoMoveTime;
 
     JudgeType m_LastJudge = NONE;
+
+    // =========================
+    // ポーズ
+    // =========================
+
+    bool m_IsPaused;
+
+    // 0 = 再開
+    // 1 = リトライ
+    // 2 = タイトルに戻る
+    int m_PauseSelect;
+
+    bool m_IsRetry;
+    bool m_IsReturnTitle;
+    bool m_BGMStarted;
 };
