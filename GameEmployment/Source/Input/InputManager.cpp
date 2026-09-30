@@ -30,7 +30,7 @@ void InputManager::Update()
     m_Up = CheckHitKey(KEY_INPUT_UP);
     m_Down = CheckHitKey(KEY_INPUT_DOWN);
 
-    m_Enter = CheckHitKey(KEY_INPUT_RETURN);
+    m_Enter = CheckHitKey(KEY_INPUT_SPACE);
 
 
     // =========================

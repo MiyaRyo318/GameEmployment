@@ -13,10 +13,10 @@ void TitleScene::Init()
     // 最初はゲームスタートを選択
     m_MenuSelect = MenuSelect::GAME_START;
 
-    m_IsUpKey = false;
-    m_IsDownKey = false;
-    m_IsSpaceKey = false;
-    m_IsEscKey = false;
+    m_IsUpKey = CheckHitKey(KEY_INPUT_UP);
+    m_IsDownKey = CheckHitKey(KEY_INPUT_DOWN);
+    m_IsSpaceKey = CheckHitKey(KEY_INPUT_SPACE);
+    m_IsEscKey = CheckHitKey(KEY_INPUT_Z);
 }
 
 void TitleScene::Update()
@@ -148,12 +148,6 @@ void TitleScene::Draw()
             400,
             280,
             "Jキー      ：カッ",
-            GetColor(255, 255, 255));
-
-        DrawString(
-            400,
-            340,
-            "← / →     ：プレイヤー移動",
             GetColor(255, 255, 255));
 
         DrawString(

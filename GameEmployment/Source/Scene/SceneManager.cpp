@@ -1,9 +1,7 @@
 #include "SceneManager.h"
-#include <cstdlib>
 
 void SceneManager::Init()
 {
-    // とりあえずゲームシーンから開始や。
     m_Scene = TITLE;
 
     m_TitleScene.Init();
@@ -20,17 +18,11 @@ void SceneManager::Update()
         if (m_TitleScene.IsStart())
         {
             m_GameScene.Init();
-
             m_Scene = GAME;
-        }
-        else if (m_TitleScene.IsExitGame())
-        {
-            // ゲーム終了
-            DxLib_End();
-            exit(0);
         }
 
         break;
+
 
     case GAME:
 
@@ -40,7 +32,6 @@ void SceneManager::Update()
         if (m_GameScene.IsRetry())
         {
             m_GameScene.End();
-
             m_GameScene.Init();
         }
         // タイトルに戻る
@@ -49,7 +40,6 @@ void SceneManager::Update()
             m_GameScene.End();
 
             m_TitleScene.Init();
-
             m_Scene = TITLE;
         }
         // ゲームクリア
@@ -58,7 +48,6 @@ void SceneManager::Update()
             m_GameScene.End();
 
             m_GameClear.Init();
-
             m_Scene = GAMECLEAR;
         }
         // ゲームオーバー
@@ -67,11 +56,11 @@ void SceneManager::Update()
             m_GameScene.End();
 
             m_GameOver.Init();
-
             m_Scene = GAMEOVER;
         }
 
         break;
+
 
     case GAMECLEAR:
 
@@ -79,11 +68,14 @@ void SceneManager::Update()
 
         if (m_GameClear.IsReturnTitle())
         {
-            m_Scene = TITLE;
+            m_GameClear.End();
+
             m_TitleScene.Init();
+            m_Scene = TITLE;
         }
 
         break;
+
 
     case GAMEOVER:
 
@@ -91,8 +83,10 @@ void SceneManager::Update()
 
         if (m_GameOver.IsReturnTitle())
         {
-            m_Scene = TITLE;
+            m_GameOver.End();
+
             m_TitleScene.Init();
+            m_Scene = TITLE;
         }
 
         break;
@@ -104,27 +98,19 @@ void SceneManager::Draw()
     switch (m_Scene)
     {
     case TITLE:
-
         m_TitleScene.Draw();
-
         break;
 
     case GAME:
-
         m_GameScene.Draw();
-
         break;
 
     case GAMECLEAR:
-
         m_GameClear.Draw();
-
         break;
 
     case GAMEOVER:
-
         m_GameOver.Draw();
-
         break;
     }
 }
@@ -132,10 +118,7 @@ void SceneManager::Draw()
 void SceneManager::End()
 {
     m_TitleScene.End();
-
     m_GameScene.End();
-
     m_GameClear.End();
-
     m_GameOver.End();
 }

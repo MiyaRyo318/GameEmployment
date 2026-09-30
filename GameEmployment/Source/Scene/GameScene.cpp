@@ -494,39 +494,16 @@ void GameScene::Draw()
         m_Player.GetHP());
 
     // HPゲージ背景
-    DrawBox(
-        1280,
-        20,
-        1580,
-        50,
-        GetColor(80, 80, 80),
-        TRUE);
+    //DrawBox(1280,20,1580,50,GetColor(80, 80, 80),TRUE);
 
     // HP
-    DrawBox(
-        1280,
-        20,
-        1280 + m_Enemy.GetHP() * 3,
-        50,
-        GetColor(255, 80, 80),
-        TRUE);
+    //DrawBox(1280,20,1280 + m_Enemy.GetHP() * 3, 50,GetColor(255, 80, 80),TRUE);
 
     // 枠
-    DrawBox(
-        1280,
-        20,
-        1580,
-        50,
-        GetColor(255, 255, 255),
-        FALSE);
+    //DrawBox(1280,20,1580,50, GetColor(255, 255, 255), FALSE);
 
     // HP表示
-    DrawFormatString(
-        1280,
-        55,
-        GetColor(255, 255, 255),
-        "ENEMY HP : %d / 100",
-        m_Enemy.GetHP());
+    //DrawFormatString(1280,55,GetColor(255, 255, 255),"ENEMY HP : %d / 100",m_Enemy.GetHP());
 
     // =========================
 // ポーズ画面
@@ -600,11 +577,8 @@ void GameScene::Draw()
             "タイトルに戻る",
             titleColor);
 
-        DrawString(
-            600,
-            600,
-            "↑ / ↓：選択    ENTER：決定    ESC：再開",
-            white);
+        DrawFormatString(580, 780, GetColor(255, 255, 255),
+            "↑ / ↓：選択    SPACE：決定    ESC：再開");
     }
 }
 
