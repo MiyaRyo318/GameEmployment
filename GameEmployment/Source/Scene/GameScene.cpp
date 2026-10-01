@@ -189,30 +189,23 @@ void GameScene::Update()
 
         if (note)
         {
-            JudgeType judge =
-                m_Judge.Judge(
-                    note->GetHitTime(),
-                    m_CurrentTime);
+            JudgeType judge =m_Judge.Judge(note->GetHitTime(),m_CurrentTime);
 
             switch (judge)
             {
             case PERFECT:
 
-                note->SetJudge(true);
-                m_LastJudge = PERFECT;
+                note->SetJudge(true);m_LastJudge = PERFECT;
 
-                m_BulletManager.ShootPlayerBullet(
-                    m_Player.GetPosition());
+                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
 
                 break;
 
             case GREAT:
+                
+                note->SetJudge(true);m_LastJudge = GREAT;
 
-                note->SetJudge(true);
-                m_LastJudge = GREAT;
-
-                m_BulletManager.ShootPlayerBullet(
-                    m_Player.GetPosition());
+                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
 
                 break;
 
