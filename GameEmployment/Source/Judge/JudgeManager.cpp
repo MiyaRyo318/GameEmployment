@@ -1,9 +1,7 @@
 #include "JudgeManager.h"
 #include <cmath>
 
-JudgeType JudgeManager::Judge(
-    float noteTime,
-    float currentTime)
+JudgeType JudgeManager::Judge(float noteTime,float currentTime)
 {
     float diff = fabs(noteTime - currentTime);
 

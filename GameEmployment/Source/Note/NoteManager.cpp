@@ -27,10 +27,7 @@ void NoteManager::Init()
 
     for (const auto& note : score)
     {
-        AddNote(
-            note.HitTime,
-            note.Type,
-            NOTE_Y);
+        AddNote(note.HitTime,note.Type,NOTE_Y);
     }
 }
 
@@ -41,15 +38,10 @@ void NoteManager::Update(float currentTime)
         note.Update(currentTime);
     }
 
-    m_Notes.erase(
-        std::remove_if(
-            m_Notes.begin(),
-            m_Notes.end(),
-            [](const Note& note)
+    m_Notes.erase(std::remove_if(m_Notes.begin(),m_Notes.end(),[](const Note& note)
             {
                 return note.IsDead() || note.IsJudge();
-            }),
-        m_Notes.end());
+            }),m_Notes.end());
 }
 
 void NoteManager::Draw()
@@ -63,26 +55,14 @@ void NoteManager::Draw()
     }
 
     // デバッグ
-    DrawFormatString(
-        20,
-        20,
-        GetColor(255, 255, 255),
-        "Note Count : %d",
-        (int)m_Notes.size());
+    DrawFormatString(20,20,GetColor(255, 255, 255),"Note Count : %d",(int)m_Notes.size());
 }
 
-void NoteManager::AddNote(
-    float hitTime,
-    NoteType type,
-    float y)
+void NoteManager::AddNote(float hitTime,NoteType type,float y)
 {
     Note note;
 
-    note.Create(
-        hitTime,
-        type,
-        y,
-        -1);
+    note.Create(hitTime,type,y,-1);
 
     m_Notes.push_back(note);
 }

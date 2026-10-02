@@ -5,20 +5,11 @@ Player::Player()
 {
     m_Model = -1;
 
-    m_Position = VGet(
-        -100.0f,
-        60.0f,
-        0.0f);
+    m_Position = VGet(-100.0f,60.0f,0.0f);
 
-    m_Rotation = VGet(
-        0.0f,
-        0.0f,
-        0.0f);
+    m_Rotation = VGet(0.0f,0.0f,0.0f);
 
-    m_Scale = VGet(
-        1.0f,
-        1.0f,
-        1.0f);
+    m_Scale = VGet(1.0f,1.0f,1.0f);
 
     m_Lane = 0;
 
@@ -38,30 +29,17 @@ void Player::Init()
 
     if (m_Model == -1)
     {
-        MessageBox(
-            nullptr,
-            "Player.x の読み込みに失敗しました",
-            "Player Error",
-            MB_OK);
+        MessageBox(nullptr,"Player.x の読み込みに失敗しました","Player Error",MB_OK);
 
         return;
     }
 
     // プレイヤーを画面左側に配置
-    m_Position = VGet(
-        -120.0f,
-        60.0f,
-        0.0f);
+    m_Position = VGet(-120.0f,60.0f,0.0f);
 
-    m_Rotation = VGet(
-        0.0f,
-        0.0f,
-        0.0f);
+    m_Rotation = VGet(0.0f,0.0f,0.0f);
 
-    m_Scale = VGet(
-        10.0f,
-        10.0f,
-        10.0f);
+    m_Scale = VGet(10.0f,10.0f,10.0f);
 
     MV1SetPosition(m_Model, m_Position);
     MV1SetRotationXYZ(m_Model, m_Rotation);
@@ -85,19 +63,11 @@ void Player::Draw()
     {
         MV1DrawModel(m_Model);
 
-        DrawFormatString(
-            20,
-            150,
-            GetColor(255, 255, 255),
-            "PLAYER DRAW OK");
+        DrawFormatString(20,150,GetColor(255, 255, 255),"PLAYER DRAW OK");
     }
     else
     {
-        DrawFormatString(
-            20,
-            150,
-            GetColor(255, 0, 0),
-            "PLAYER MODEL ERROR");
+        DrawFormatString(20,150,GetColor(255, 0, 0),"PLAYER MODEL ERROR");
     }
 }
 

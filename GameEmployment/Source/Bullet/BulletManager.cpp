@@ -21,15 +21,11 @@ void BulletManager::Update()
     }
 
     // 死んだ弾を削除
-    m_Bullets.erase(
-        std::remove_if(
-            m_Bullets.begin(),
-            m_Bullets.end(),
+    m_Bullets.erase(std::remove_if(m_Bullets.begin(),m_Bullets.end(),
             [](const Bullet& bullet)
             {
                 return bullet.IsDead();
-            }),
-        m_Bullets.end());
+            }),m_Bullets.end());
 }
 
 void BulletManager::Draw()
@@ -49,15 +45,9 @@ void BulletManager::ShootPlayerBullet(VECTOR position)
 {
     Bullet bullet;
 
-    VECTOR velocity = VGet(
-        0.0f,
-        0.0f,
-        5.0f);
+    VECTOR velocity = VGet(0.0f,0.0f,5.0f);
 
-    bullet.Create(
-        position,
-        velocity,
-        BULLET_PLAYER);
+    bullet.Create(position,velocity,BULLET_PLAYER);
 
     m_Bullets.push_back(bullet);
 }
@@ -91,11 +81,7 @@ void BulletManager::CheckEnemyCollision(Enemy& enemy)
         float dy = bulletPos.y - enemyPos.y;
         float dz = bulletPos.z - enemyPos.z;
 
-        float distance = sqrtf(
-            dx * dx +
-            dy * dy +
-            dz * dz
-        );
+        float distance = sqrtf(dx * dx +dy * dy +dz * dz);
 
         float bulletRadius = 10.0f;
 
@@ -110,22 +96,14 @@ void BulletManager::CheckEnemyCollision(Enemy& enemy)
     }
 }
 
-void BulletManager::ShootEnemyBullet(
-    VECTOR position,
-    int lane)
+void BulletManager::ShootEnemyBullet(VECTOR position,int lane)
 {
     Bullet bullet;
 
     // 真っすぐプレイヤー方向へ飛ばす
-    VECTOR velocity = VGet(
-        0.0f,
-        0.0f,
-        -5.0f);
+    VECTOR velocity = VGet(0.0f,0.0f,-5.0f);
 
-    bullet.Create(
-        position,
-        velocity,
-        BULLET_ENEMY);
+    bullet.Create(position,velocity,BULLET_ENEMY);
 
     m_Bullets.push_back(bullet);
 }
@@ -139,8 +117,7 @@ void BulletManager::CheckPlayerCollision(Player& player)
 
     VECTOR playerPos = player.GetPosition();
 
-    float playerRadius =
-        player.GetCollisionRadius();
+    float playerRadius = player.GetCollisionRadius();
 
     for (auto& bullet : m_Bullets)
     {

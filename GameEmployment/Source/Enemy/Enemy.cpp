@@ -6,15 +6,9 @@ Enemy::Enemy()
 {
     m_Model = -1;
 
-    m_Position = VGet(
-        200.0f,
-        80.0f,
-        0.0f);
+    m_Position = VGet(200.0f,80.0f,0.0f);
 
-    m_Rotation = VGet(
-        0.0f,
-        DX_PI_F / 2.0f,
-        0.0f);
+    m_Rotation = VGet(0.0f,DX_PI_F / 2.0f,0.0f);
 
     m_Scale = VGet(30.0f, 30.0f, 30.0f);
 
@@ -39,30 +33,17 @@ void Enemy::Init()
 
     if (m_Model == -1)
     {
-        MessageBox(
-            nullptr,
-            "Enemy.x ÇÃì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩ",
-            "Enemy Error",
-            MB_OK);
+        MessageBox(nullptr,"Enemy.x ÇÃì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩ","Enemy Error",MB_OK);
 
         return;
     }
 
     // ìGÇâÊñ âEë§Ç…îzíu
-    m_Position = VGet(
-        120.0f,
-        80.0f,
-        0.0f);
+    m_Position = VGet(120.0f,80.0f,0.0f);
 
-    m_Rotation = VGet(
-        0.0f,
-        -53.5f,
-        0.0f);
+    m_Rotation = VGet(0.0f,-53.5f,0.0f);
 
-    m_Scale = VGet(
-        30.0f,
-        30.0f,
-        30.0f);
+    m_Scale = VGet(30.0f,30.0f,30.0f);
 
     MV1SetPosition(m_Model, m_Position);
     MV1SetRotationXYZ(m_Model, m_Rotation);
@@ -98,11 +79,7 @@ void Enemy::Draw()
         MV1DrawModel(m_Model);
     }
 
-    DrawFormatString(
-        20,
-        120,
-        GetColor(255, 255, 255),
-        "ENEMY DRAW OK");
+    DrawFormatString(20,120,GetColor(255, 255, 255),"ENEMY DRAW OK");
 }
 
 void Enemy::End()

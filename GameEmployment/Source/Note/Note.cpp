@@ -19,11 +19,7 @@ Note::Note()
     m_Image = -1;
 }
 
-void Note::Create(
-    float hitTime,
-    NoteType type,
-    float y,
-    int image)
+void Note::Create(float hitTime,NoteType type,float y,int image)
 {
     m_HitTime = hitTime;
 
@@ -63,20 +59,10 @@ void Note::Draw()
     }
 
     // äOë§ÇÃîíÇ¢âè
-    DrawCircle(
-        (int)m_X,
-        (int)m_Y,
-        28,
-        GetColor(255, 255, 255),
-        TRUE);
+    DrawCircle((int)m_X,(int)m_Y,28,GetColor(255, 255, 255),TRUE);
 
     // íÜêg
-    DrawCircle(
-        (int)m_X,
-        (int)m_Y,
-        22,
-        color,
-        TRUE);
+    DrawCircle((int)m_X,(int)m_Y,22,color,TRUE);
 }
 
 void Note::SetJudge(bool judge)

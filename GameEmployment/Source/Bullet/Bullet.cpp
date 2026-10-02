@@ -3,15 +3,9 @@
 
 Bullet::Bullet()
 {
-    m_Position = VGet(
-        0.0f,
-        0.0f,
-        0.0f);
+    m_Position = VGet(0.0f,0.0f,0.0f);
 
-    m_Velocity = VGet(
-        0.0f,
-        0.0f,
-        0.0f);
+    m_Velocity = VGet(0.0f,0.0f,0.0f);
 
     m_Radius = 10.0f;
 
@@ -20,10 +14,7 @@ Bullet::Bullet()
     m_Owner = BULLET_PLAYER;
 }
 
-void Bullet::Create(
-    VECTOR position,
-    VECTOR velocity,
-    BulletOwner owner)
+void Bullet::Create(VECTOR position,VECTOR velocity,BulletOwner owner)
 {
     m_Position = position;
 
@@ -48,8 +39,7 @@ void Bullet::Update()
     m_Position.z += m_Velocity.z;
 
     // ”ÍˆÍŠO‚Éo‚½‚çíœ
-    if (m_Position.z > 1000.0f ||
-        m_Position.z < -1000.0f)
+    if (m_Position.z > 1000.0f ||m_Position.z < -1000.0f)
     {
         m_Dead = true;
     }
@@ -65,24 +55,12 @@ void Bullet::Draw()
     if (m_Owner == BULLET_PLAYER)
     {
         // ƒvƒŒƒCƒ„[‚Ì’e
-        DrawSphere3D(
-            m_Position,
-            m_Radius,
-            16,
-            GetColor(255, 255, 0),
-            GetColor(255, 255, 0),
-            TRUE);
+        DrawSphere3D(m_Position,m_Radius,16,GetColor(255, 255, 0),GetColor(255, 255, 0),TRUE);
     }
     else
     {
         // “G‚Ì’e
-        DrawSphere3D(
-            m_Position,
-            m_Radius,
-            16,
-            GetColor(255, 0, 0),
-            GetColor(255, 0, 0),
-            TRUE);
+        DrawSphere3D(m_Position,m_Radius,16,GetColor(255, 0, 0),GetColor(255, 0, 0),TRUE);
     }
 }
 

@@ -14,10 +14,7 @@ public:
 
     Bullet();
 
-    void Create(
-        VECTOR position,
-        VECTOR velocity,
-        BulletOwner owner);
+    void Create(VECTOR position,VECTOR velocity,BulletOwner owner);
 
     void Update();
 
