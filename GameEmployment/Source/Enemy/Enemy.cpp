@@ -59,7 +59,7 @@ void Enemy::Init()
 
 void Enemy::Update()
 {
-    // 横スクロール中は通常のレーン移動を行わない
+    
 }
 
 void Enemy::StartAttack()

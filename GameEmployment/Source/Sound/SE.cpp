@@ -47,35 +47,25 @@ void SE::End()
 
 void SE::PlayDecision()
 {
-    PlaySoundMem(
-        m_DecisionSE,
-        DX_PLAYTYPE_BACK);
+    PlaySoundMem(m_DecisionSE,DX_PLAYTYPE_BACK);
 }
 
 void SE::PlayPerfect()
 {
-    PlaySoundMem(
-        m_PerfectSE,
-        DX_PLAYTYPE_BACK);
+    PlaySoundMem(m_PerfectSE,DX_PLAYTYPE_BACK);
 }
 
 void SE::PlayMiss()
 {
-    PlaySoundMem(
-        m_MissSE,
-        DX_PLAYTYPE_BACK);
+    PlaySoundMem(m_MissSE,DX_PLAYTYPE_BACK);
 }
 
 void SE::PlayDon()
 {
-    PlaySoundMem(
-        m_DonSE,
-        DX_PLAYTYPE_BACK);
+    PlaySoundMem(m_DonSE,DX_PLAYTYPE_BACK);
 }
 
 void SE::PlayKa()
 {
-    PlaySoundMem(
-        m_KaSE,
-        DX_PLAYTYPE_BACK);
+    PlaySoundMem(m_KaSE,DX_PLAYTYPE_BACK);
 }

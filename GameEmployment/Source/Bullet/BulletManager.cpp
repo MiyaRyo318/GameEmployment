@@ -132,28 +132,19 @@ void BulletManager::CheckPlayerCollision(Player& player)
             continue;
         }
 
-        VECTOR bulletPos =
-            bullet.GetPosition();
+        VECTOR bulletPos = bullet.GetPosition();
 
-        float dx =
-            bulletPos.x - playerPos.x;
+        float dx = bulletPos.x - playerPos.x;
 
-        float dy =
-            bulletPos.y - playerPos.y;
+        float dy = bulletPos.y - playerPos.y;
 
-        float dz =
-            bulletPos.z - playerPos.z;
+        float dz = bulletPos.z - playerPos.z;
 
-        float distance =
-            sqrtf(
-                dx * dx +
-                dy * dy +
-                dz * dz);
+        float distance = sqrtf(dx * dx + dy * dy + dz * dz);
 
         float bulletRadius = 10.0f;
 
-        if (distance <=
-            playerRadius + bulletRadius)
+        if (distance <= playerRadius + bulletRadius)
         {
             // プレイヤーに10ダメージ
             player.Damage(10);

@@ -75,10 +75,8 @@ void GameScene::Update()
 {
     m_Input.Update();
 
-    // =========================
     // ポーズ開始
-    // =========================
-
+    
     if (!m_IsPaused)
     {
         if (m_Input.IsPauseTrigger())
@@ -95,10 +93,8 @@ void GameScene::Update()
         }
     }
 
-    // =========================
     // ポーズ中
-    // =========================
-
+    
     if (m_IsPaused)
     {
         // ESCで再開
@@ -106,9 +102,7 @@ void GameScene::Update()
         {
             m_IsPaused = false;
 
-            m_StartTime =
-                GetNowCount()
-                - (int)(m_CurrentTime * 1000.0f);
+            m_StartTime = GetNowCount() - (int)(m_CurrentTime * 1000.0f);
 
             m_Sound.PlayBGM();
 
@@ -145,9 +139,7 @@ void GameScene::Update()
                 // 再開
                 m_IsPaused = false;
 
-                m_StartTime =
-                    GetNowCount()
-                    - (int)(m_CurrentTime * 1000.0f);
+                m_StartTime = GetNowCount() - (int)(m_CurrentTime * 1000.0f);
 
                 m_Sound.PlayBGM();
             }
@@ -214,8 +206,7 @@ void GameScene::Update()
                 note->SetJudge(true);
                 m_LastJudge = GOOD;
 
-                m_BulletManager.ShootPlayerBullet(
-                    m_Player.GetPosition());
+                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
 
                 break;
 
@@ -236,10 +227,7 @@ void GameScene::Update()
 
         if (note)
         {
-            JudgeType judge =
-                m_Judge.Judge(
-                    note->GetHitTime(),
-                    m_CurrentTime);
+            JudgeType judge = m_Judge.Judge(note->GetHitTime(),m_CurrentTime);
 
             switch (judge)
             {
@@ -248,8 +236,7 @@ void GameScene::Update()
                 note->SetJudge(true);
                 m_LastJudge = PERFECT;
 
-                m_BulletManager.ShootPlayerBullet(
-                    m_Player.GetPosition());
+                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
 
                 break;
 
@@ -258,8 +245,7 @@ void GameScene::Update()
                 note->SetJudge(true);
                 m_LastJudge = GREAT;
 
-                m_BulletManager.ShootPlayerBullet(
-                    m_Player.GetPosition());
+                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
 
                 break;
 
@@ -268,8 +254,7 @@ void GameScene::Update()
                 note->SetJudge(true);
                 m_LastJudge = GOOD;
 
-                m_BulletManager.ShootPlayerBullet(
-                    m_Player.GetPosition());
+                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
 
                 break;
 
@@ -336,51 +321,24 @@ void GameScene::Draw()
     // ===== 2D =====
 
     // レーン
-    DrawBox(
-        0,
-        610,
-        1600,
-        690,
-        GetColor(60, 60, 60),
-        TRUE);
+    DrawBox(0,610,1600,690,GetColor(60, 60, 60),TRUE);
 
     if (m_Input.IsDon())
     {
         
-        DrawCircle(
-            200,
-            650,
-            40,
-            GetColor(255, 80, 80),
-            TRUE);
+        DrawCircle(200,650,40,GetColor(255, 80, 80),TRUE);
     }
 
     if (m_Input.IsKa())
     {
-        DrawCircle(
-            200,
-            650,
-            40,
-            GetColor(80, 160, 255),
-            TRUE);
+        DrawCircle(200,650,40,GetColor(80, 160, 255),TRUE);
     }
 
     // 判定ライン
-    DrawBox(
-        198,
-        610,
-        202,
-        690,
-        GetColor(255, 255, 255),
-        TRUE);
+    DrawBox(198,610,202,690,GetColor(255, 255, 255),TRUE);
 
     // 判定枠や。次の禪院家当主は俺や。
-    DrawCircle(
-        200,
-        650,
-        45,
-        GetColor(255, 255, 255),
-        FALSE);
+    DrawCircle(200,650,45,GetColor(255, 255, 255),FALSE);
 
     // ノーツ
     m_NoteManager.Draw();
@@ -396,12 +354,7 @@ void GameScene::Draw()
         judgeColor = GetColor(0, 128, 255);
     }
 
-    DrawCircle(
-        200,
-        650,
-        40,
-        judgeColor,
-        FALSE);
+    DrawCircle(200,650,40,judgeColor,FALSE);
 
     //DrawFormatString(300,100,GetColor(255, 255, 255),"GameScene");
 
@@ -430,61 +383,23 @@ void GameScene::Draw()
 
     if (note)
     {
-        DrawFormatString(
-            20,
-            50,
-            GetColor(255, 255, 255),
-            "Now : %.2f",
-            m_CurrentTime);
+        DrawFormatString(20,50,GetColor(255, 255, 255),"Now : %.2f",m_CurrentTime);
 
-        DrawFormatString(
-            20,
-            70,
-            GetColor(255, 255, 255),
-            "Hit : %.2f",
-            note->GetHitTime());
+        DrawFormatString(20,70,GetColor(255, 255, 255),"Hit : %.2f",note->GetHitTime());
 
-        DrawFormatString(
-            20,
-            90,
-            GetColor(255, 255, 255),
-            "Diff : %.2f",
-            fabs(note->GetHitTime() - m_CurrentTime));
+        DrawFormatString(20,90,GetColor(255, 255, 255),"Diff : %.2f",fabs(note->GetHitTime() - m_CurrentTime));
     }
 
     // HPゲージ背景
-    DrawBox(
-        20,
-        20,
-        320,
-        50,
-        GetColor(80, 80, 80),
-        TRUE);
+    DrawBox(20,20,320,50,GetColor(80, 80, 80),TRUE);
 
     // HP
-    DrawBox(
-        20,
-        20,
-        20 + m_Player.GetHP() * 3,
-        50,
-        GetColor(0, 255, 0),
-        TRUE);
+    DrawBox(20,20,20 + m_Player.GetHP() * 3,50,GetColor(0, 255, 0),TRUE);
 
     // 枠
-    DrawBox(
-        20,
-        20,
-        320,
-        50,
-        GetColor(255, 255, 255),
-        FALSE);
+    DrawBox(20,20,320,50,GetColor(255, 255, 255),FALSE);
 
-    DrawFormatString(
-        330,
-        25,
-        GetColor(255, 255, 255),
-        "%d / 100",
-        m_Player.GetHP());
+    DrawFormatString(330,25,GetColor(255, 255, 255),"%d / 100",m_Player.GetHP());
 
     // HPゲージ背景
     //DrawBox(1280,20,1580,50,GetColor(80, 80, 80),TRUE);
@@ -505,34 +420,18 @@ void GameScene::Draw()
     if (m_IsPaused)
     {
         // 画面を暗くする
-        SetDrawBlendMode(
-            DX_BLENDMODE_ALPHA,
-            180);
+        SetDrawBlendMode(DX_BLENDMODE_ALPHA,180);
 
-        DrawBox(
-            0,
-            0,
-            1600,
-            900,
-            GetColor(0, 0, 0),
-            TRUE);
+        DrawBox(0,0,1600,900,GetColor(0, 0, 0),TRUE);
 
-        SetDrawBlendMode(
-            DX_BLENDMODE_NOBLEND,
-            0);
+        SetDrawBlendMode(DX_BLENDMODE_NOBLEND,0);
 
-        int white =
-            GetColor(255, 255, 255);
+        int white = GetColor(255, 255, 255);
 
-        int yellow =
-            GetColor(255, 255, 0);
+        int yellow = GetColor(255, 255, 0);
 
         // PAUSE
-        DrawString(
-            760,
-            180,
-            "PAUSE",
-            white);
+        DrawString(760,180,"PAUSE",white);
 
         // メニュー
         int resumeColor = white;
@@ -552,26 +451,13 @@ void GameScene::Draw()
             titleColor = yellow;
         }
 
-        DrawString(
-            700,
-            350,
-            "再開",
-            resumeColor);
+        DrawString(700,350,"再開",resumeColor);
 
-        DrawString(
-            700,
-            420,
-            "リトライ",
-            retryColor);
+        DrawString(700,420,"リトライ",retryColor);
 
-        DrawString(
-            700,
-            490,
-            "タイトルに戻る",
-            titleColor);
+        DrawString(700,490,"タイトルに戻る",titleColor);
 
-        DrawFormatString(580, 780, GetColor(255, 255, 255),
-            "↑ / ↓：選択    SPACE：決定    ESC：再開");
+        DrawFormatString(580, 780, GetColor(255, 255, 255),"↑ / ↓：選択    SPACE：決定    ESC：再開");
     }
 }
 

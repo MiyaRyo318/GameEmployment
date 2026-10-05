@@ -59,10 +59,8 @@ private:
 
     JudgeType m_LastJudge = NONE;
 
-    // =========================
     // ポーズ
-    // =========================
-
+    
     bool m_IsPaused;
 
     // 0 = 再開

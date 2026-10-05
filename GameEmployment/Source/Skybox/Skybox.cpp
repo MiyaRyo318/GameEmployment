@@ -5,20 +5,11 @@ Skybox::Skybox()
 {
     m_Model = -1;
 
-    m_Position = VGet(
-        0.0f,
-        0.0f,
-        0.0f);
+    m_Position = VGet(0.0f,0.0f,0.0f);
 
-    m_Rotation = VGet(
-        0.0f,
-        0.0f,
-        0.0f);
+    m_Rotation = VGet(0.0f,0.0f,0.0f);
 
-    m_Scale = VGet(
-        20.0f,
-        20.0f,
-        20.0f);
+    m_Scale = VGet(20.0f,20.0f,20.0f);
 
     // 背景のスクロール速度や。最高速度でぶち抜いてやる
     m_ScrollSpeed = 0.5f;
@@ -31,26 +22,16 @@ void Skybox::Init()
 
     if (m_Model == -1)
     {
-        MessageBox(
-            nullptr,
-            "Skybox.x の読み込みに失敗しました",
-            "Skybox Error",
-            MB_OK);
+        MessageBox(nullptr,"Skybox.x の読み込みに失敗しました","Skybox Error",MB_OK);
 
         return;
     }
 
-    MV1SetPosition(
-        m_Model,
-        m_Position);
+    MV1SetPosition(m_Model,m_Position);
 
-    MV1SetRotationXYZ(
-        m_Model,
-        m_Rotation);
+    MV1SetRotationXYZ(m_Model,m_Rotation);
 
-    MV1SetScale(
-        m_Model,
-        m_Scale);
+    MV1SetScale(m_Model,m_Scale);
 }
 
 void Skybox::Update()

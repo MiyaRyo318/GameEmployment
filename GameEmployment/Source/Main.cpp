@@ -1,11 +1,7 @@
 #include "DxLib.h"
 #include "Scene/SceneManager.h"
 
-int WINAPI WinMain(
-    HINSTANCE,
-    HINSTANCE,
-    LPSTR,
-    int)
+int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
 {
     ChangeWindowMode(TRUE);
 

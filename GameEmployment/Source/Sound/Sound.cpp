@@ -38,10 +38,7 @@ void Sound::PlayBGM()
 
     if (CheckSoundMem(m_BGMHandle) == 0)
     {
-        PlaySoundMem(
-            m_BGMHandle,
-            DX_PLAYTYPE_BACK,
-            FALSE);
+        PlaySoundMem(m_BGMHandle,DX_PLAYTYPE_BACK,FALSE);
     }
 }
 

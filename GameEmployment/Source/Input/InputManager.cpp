@@ -3,9 +3,7 @@
 
 void InputManager::Update()
 {
-    // =========================
     // ‘OƒtƒŒ[ƒ€‚Ìó‘Ô‚ğ•Û‘¶
-    // =========================
 
     m_OldDon = m_Don;
     m_OldKa = m_Ka;
@@ -17,11 +15,8 @@ void InputManager::Update()
 
     m_OldEnter = m_Enter;
 
-
-    // =========================
     // Œ»İ‚Ìó‘Ô
-    // =========================
-
+    
     m_Don = CheckHitKey(KEY_INPUT_F);
     m_Ka = CheckHitKey(KEY_INPUT_J);
 
@@ -32,11 +27,8 @@ void InputManager::Update()
 
     m_Enter = CheckHitKey(KEY_INPUT_SPACE);
 
-
-    // =========================
     // ‰Ÿ‚µ‚½uŠÔ
-    // =========================
-
+    
     m_DonTrigger =
         (m_Don && !m_OldDon);
 

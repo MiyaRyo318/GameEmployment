@@ -54,7 +54,7 @@ void Player::Init()
 
 void Player::Update()
 {
-    // 横スクロール中は手動移動を行わない
+    
 }
 
 void Player::Draw()
@@ -113,6 +113,5 @@ float Player::GetCollisionRadius() const
 
 void Player::AutoMove(float deltaTime)
 {
-    // プレイヤーは画面左側に固定する
-    // 現在は自動移動させない
+    
 }

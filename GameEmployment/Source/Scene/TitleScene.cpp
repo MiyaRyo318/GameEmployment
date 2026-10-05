@@ -41,9 +41,7 @@ void TitleScene::Update()
     bool downKey = CheckHitKey(KEY_INPUT_DOWN);
     bool spaceKey = CheckHitKey(KEY_INPUT_SPACE);
 
-    // =========================
     // 上キー
-    // =========================
     if (upKey && !m_IsUpKey)
     {
         if (m_MenuSelect == MenuSelect::GAME_START)
@@ -63,9 +61,7 @@ void TitleScene::Update()
         }
     }
 
-    // =========================
     // 下キー
-    // =========================
     if (downKey && !m_IsDownKey)
     {
         if (m_MenuSelect == MenuSelect::GAME_START)
@@ -85,9 +81,7 @@ void TitleScene::Update()
         }
     }
 
-    // =========================
     // SPACEキー
-    // =========================
     if (spaceKey && !m_IsSpaceKey)
     {
         if (m_MenuSelect == MenuSelect::GAME_START)
@@ -115,46 +109,22 @@ void TitleScene::Draw()
     // タイトル画像
     DrawGraph(0, 0, m_TitleImage, TRUE);
 
-    // =========================
     // 操作説明画面
-    // =========================
     if (m_MenuState == MenuState::OPERATION)
     {
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 220);
 
-        DrawBox(
-            0,
-            0,
-            1600,
-            900,
-            GetColor(0, 0, 0),
-            TRUE);
+        DrawBox(0,0,1600,900,GetColor(0, 0, 0),TRUE);
 
         SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-        DrawString(
-            480,
-            100,
-            "操作説明",
-            GetColor(255, 255, 255));
+        DrawString(480,100,"操作説明",GetColor(255, 255, 255));
 
-        DrawString(
-            400,
-            220,
-            "Fキー      ：ドン",
-            GetColor(255, 255, 255));
+        DrawString(400,220,"Fキー      ：ドン",GetColor(255, 255, 255));
 
-        DrawString(
-            400,
-            280,
-            "Jキー      ：カッ",
-            GetColor(255, 255, 255));
+        DrawString(400,280,"Jキー      ：カッ",GetColor(255, 255, 255));
 
-        DrawString(
-            400,
-            440,
-            "Zキー       ：戻る",
-            GetColor(255, 255, 255));
+        DrawString(400,440,"Zキー       ：戻る",GetColor(255, 255, 255));
 
         return;
     }
@@ -166,9 +136,7 @@ void TitleScene::Draw()
     int operationColor = white;
     int exitGameColor = white;
 
-    // =========================
     // 選択中の項目を黄色にする
-    // =========================
     if (m_MenuSelect == MenuSelect::GAME_START)
     {
         gameStartColor = yellow;
@@ -182,32 +150,14 @@ void TitleScene::Draw()
         exitGameColor = yellow;
     }
 
-    // =========================
     // メニュー
-    // =========================
-    DrawString(
-        520,
-        480,
-        "ゲームスタート",
-        gameStartColor);
+    DrawString(520,480,"ゲームスタート",gameStartColor);
 
-    DrawString(
-        520,
-        530,
-        "操作説明",
-        operationColor);
+    DrawString(520,530,"操作説明",operationColor);
 
-    DrawString(
-        520,
-        580,
-        "ゲームを終了する",
-        exitGameColor);
+    DrawString(520,580,"ゲームを終了する",exitGameColor);
 
-    DrawString(
-        470,
-        650,
-        "↑ / ↓：選択    SPACE：決定",
-        white);
+    DrawString(470,650,"↑ / ↓：選択    SPACE：決定",white);
 }
 
 void TitleScene::End()
