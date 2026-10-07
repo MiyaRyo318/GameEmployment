@@ -19,7 +19,7 @@ Note::Note()
     m_Image = -1;
 }
 
-void Note::Create(float hitTime,NoteType type,float y,int image)
+void Note::Create(float hitTime, NoteType type, float y, int image)
 {
     m_HitTime = hitTime;
 
@@ -36,7 +36,7 @@ void Note::Update(float currentTime)
 
     m_X = JUDGE_LINE_X + remain * m_Speed;
 
-    // GOOD判定より遅れたら削除や。削除するんは俺や。
+    // GOOD判定より遅れたら削除
     if (currentTime > m_HitTime + 0.20f)
     {
         m_IsDelete = true;
@@ -49,13 +49,18 @@ void Note::Draw()
 
     if (m_Type == DON)
     {
-        // ドンを叩くんは俺や。
+        // ドン
         color = GetColor(255, 0, 0);
+    }
+    else if (m_Type == KA)
+    {
+        // カッ
+        color = GetColor(0, 128, 255);
     }
     else
     {
-        // カッを叩くんは俺や。
-        color = GetColor(0, 128, 255);
+        // 攻撃ノーツ
+        color = GetColor(255, 165, 0);
     }
 
     // 外側の白い縁

@@ -82,6 +82,26 @@ Note* NoteManager::GetFirstNote()
     return &m_Notes.front();
 }
 
+Note* NoteManager::GetJudgeNote()
+{
+    for (auto& note : m_Notes)
+    {
+        if (note.IsJudge())
+        {
+            continue;
+        }
+
+        if (note.IsDelete())
+        {
+            continue;
+        }
+
+        return &note;
+    }
+
+    return nullptr;
+}
+
 Note* NoteManager::GetJudgeNote(NoteType type)
 {
     for (auto& note : m_Notes)

@@ -173,96 +173,95 @@ void GameScene::Update()
         return;
     }
 
-    if (m_Input.IsDonTrigger())
+    bool don = m_Input.IsDonTrigger();
+    bool ka = m_Input.IsKaTrigger();
+
+    if (don || ka)
     {
-        m_SE.PlayDon();
-
-        Note* note = m_NoteManager.GetJudgeNote(DON);
-
-        if (note)
+        // 押したキーのSE
+        if (don)
         {
-            JudgeType judge =m_Judge.Judge(note->GetHitTime(),m_CurrentTime);
-
-            switch (judge)
-            {
-            case PERFECT:
-
-                note->SetJudge(true);m_LastJudge = PERFECT;
-
-                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
-
-                break;
-
-            case GREAT:
-                
-                note->SetJudge(true);m_LastJudge = GREAT;
-
-                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
-
-                break;
-
-            case GOOD:
-
-                note->SetJudge(true);
-                m_LastJudge = GOOD;
-
-                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
-
-                break;
-
-            case NONE:
-                break;
-
-            case MISS:
-                break;
-            }
+            m_SE.PlayDon();
         }
-    }
+        else
+        {
+            m_SE.PlayKa();
+        }
 
-    if (m_Input.IsKaTrigger())
-    {
-        m_SE.PlayKa();
-
-        Note* note = m_NoteManager.GetJudgeNote(KA);
+        // 現在の一番手前のノーツを取得
+        Note* note = m_NoteManager.GetJudgeNote();
 
         if (note)
         {
-            JudgeType judge = m_Judge.Judge(note->GetHitTime(),m_CurrentTime);
+            bool canHit = false;
 
-            switch (judge)
+            // ノーツの種類によって叩けるキーを決める
+            if (note->GetType() == DON)
             {
-            case PERFECT:
+                // 赤ノーツはドンだけ
+                canHit = don;
+            }
+            else if (note->GetType() == KA)
+            {
+                // 青ノーツはカッだけ
+                canHit = ka;
+            }
+            else if (note->GetType() == ORANGE)
+            {
+                // オレンジノーツはドンでもカッでもOK
+                canHit = don || ka;
+            }
 
-                note->SetJudge(true);
-                m_LastJudge = PERFECT;
+            if (canHit)
+            {
+                JudgeType judge =
+                    m_Judge.Judge(note->GetHitTime(), m_CurrentTime);
 
-                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
+                switch (judge)
+                {
+                case PERFECT:
 
-                break;
+                    note->SetJudge(true);
+                    m_LastJudge = PERFECT;
 
-            case GREAT:
+                    // オレンジノーツなら敵にダメージ
+                    if (note->GetType() == ORANGE)
+                    {
+                        m_Enemy.Damage(30);
+                    }
 
-                note->SetJudge(true);
-                m_LastJudge = GREAT;
+                    break;
 
-                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
+                case GREAT:
 
-                break;
+                    note->SetJudge(true);
+                    m_LastJudge = GREAT;
 
-            case GOOD:
+                    if (note->GetType() == ORANGE)
+                    {
+                        m_Enemy.Damage(30);
+                    }
 
-                note->SetJudge(true);
-                m_LastJudge = GOOD;
+                    break;
 
-                m_BulletManager.ShootPlayerBullet(m_Player.GetPosition());
+                case GOOD:
 
-                break;
+                    note->SetJudge(true);
+                    m_LastJudge = GOOD;
 
-            case NONE:
-                break;
+                    if (note->GetType() == ORANGE)
+                    {
+                        m_Enemy.Damage(30);
+                    }
 
-            case MISS:
-                break;
+                    break;
+
+                case NONE:
+                    break;
+
+                case MISS:
+                    break;
+                }
             }
         }
     }
@@ -325,7 +324,6 @@ void GameScene::Draw()
 
     if (m_Input.IsDon())
     {
-        
         DrawCircle(200,650,40,GetColor(255, 80, 80),TRUE);
     }
 
@@ -402,21 +400,18 @@ void GameScene::Draw()
     DrawFormatString(330,25,GetColor(255, 255, 255),"%d / 100",m_Player.GetHP());
 
     // HPゲージ背景
-    //DrawBox(1280,20,1580,50,GetColor(80, 80, 80),TRUE);
+    DrawBox(1280,20,1580,50,GetColor(80, 80, 80),TRUE);
 
     // HP
-    //DrawBox(1280,20,1280 + m_Enemy.GetHP() * 3, 50,GetColor(255, 80, 80),TRUE);
+    DrawBox(1280,20,1280 + m_Enemy.GetHP() * 3, 50,GetColor(255, 80, 80),TRUE);
 
     // 枠
-    //DrawBox(1280,20,1580,50, GetColor(255, 255, 255), FALSE);
+    DrawBox(1280,20,1580,50, GetColor(255, 255, 255), FALSE);
 
     // HP表示
-    //DrawFormatString(1280,55,GetColor(255, 255, 255),"ENEMY HP : %d / 100",m_Enemy.GetHP());
+    DrawFormatString(1280,55,GetColor(255, 255, 255),"ENEMY HP : %d / 100",m_Enemy.GetHP());
 
-    // =========================
 // ポーズ画面
-// =========================
-
     if (m_IsPaused)
     {
         // 画面を暗くする

@@ -5,7 +5,8 @@
 enum NoteType
 {
     DON,
-    KA
+    KA,
+    ORANGE
 };
 
 class Note
@@ -14,7 +15,7 @@ public:
 
     Note();
 
-    void Create(float hitTime,NoteType type,float y,int image);
+    void Create(float hitTime, NoteType type, float y, int image);
 
     void Update(float currentTime);
 

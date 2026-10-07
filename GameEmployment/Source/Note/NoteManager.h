@@ -24,6 +24,7 @@ public:
 
     Note* GetFirstNote();
 
+    Note* GetJudgeNote();
     Note* GetJudgeNote(NoteType type);
 
     // Ž©“®MISS”»’è
