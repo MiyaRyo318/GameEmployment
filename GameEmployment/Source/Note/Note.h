@@ -6,7 +6,8 @@ enum NoteType
 {
     DON,
     KA,
-    ORANGE
+    ORANGE,
+    GREEN
 };
 
 class Note

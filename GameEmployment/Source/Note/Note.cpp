@@ -57,10 +57,13 @@ void Note::Draw()
         // カッ
         color = GetColor(0, 128, 255);
     }
-    else
+    else if (m_Type == ORANGE)
     {
-        // 攻撃ノーツ
-        color = GetColor(255, 165, 0);
+        color = GetColor(255, 128, 0);
+    }
+    else if (m_Type == GREEN)
+    {
+        color = GetColor(0, 200, 0);
     }
 
     // 外側の白い縁

@@ -35,6 +35,10 @@ bool ScoreLoader::Load(const std::string& fileName)
         {
             data.Type = ORANGE;
         }
+        else if (type == "GREEN")
+        {
+            data.Type = GREEN;
+        }
         else
         {
             continue;

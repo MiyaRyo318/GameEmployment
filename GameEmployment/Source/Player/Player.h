@@ -13,6 +13,7 @@ public:
     void End();
 
     void Damage(int damage);
+    void Heal(int amount);
 
     int GetHP() const;
     bool IsDead() const;

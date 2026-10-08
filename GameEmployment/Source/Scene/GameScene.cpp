@@ -211,6 +211,11 @@ void GameScene::Update()
                 // オレンジノーツはドンでもカッでもOK
                 canHit = don || ka;
             }
+            else if (note->GetType() == GREEN)
+            {
+                // 緑ノーツはドンでもカッでもOK
+                canHit = don || ka;
+            }
 
             if (canHit)
             {
@@ -229,6 +234,11 @@ void GameScene::Update()
                     {
                         m_Enemy.Damage(30);
                     }
+                    else if (note->GetType() == GREEN)
+                    {
+                        // 自分を回復
+                        m_Player.Heal(30);
+                    }
 
                     break;
 
@@ -241,6 +251,10 @@ void GameScene::Update()
                     {
                         m_Enemy.Damage(30);
                     }
+                    else if (note->GetType() == GREEN)
+                    {
+                        m_Player.Heal(30);
+                    }
 
                     break;
 
@@ -252,6 +266,10 @@ void GameScene::Update()
                     if (note->GetType() == ORANGE)
                     {
                         m_Enemy.Damage(30);
+                    }
+                    else if (note->GetType() == GREEN)
+                    {
+                        m_Player.Heal(30);
                     }
 
                     break;

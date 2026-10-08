@@ -24,8 +24,7 @@ Player::Player()
 
 void Player::Init()
 {
-    m_Model = MV1LoadModel(
-        "Data/Player/Player.x");
+    m_Model = MV1LoadModel("Data/Player/Player.x");
 
     if (m_Model == -1)
     {
@@ -88,6 +87,16 @@ void Player::Damage(int damage)
     if (m_HP < 0)
     {
         m_HP = 0;
+    }
+}
+
+void Player::Heal(int amount)
+{
+    m_HP += amount;
+
+    if (m_HP > 100)
+    {
+        m_HP = 100;
     }
 }
 
