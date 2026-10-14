@@ -81,7 +81,17 @@ void SceneManager::Update()
 
         m_GameOver.Update();
 
-        if (m_GameOver.IsReturnTitle())
+        // リトライ
+        if (m_GameOver.IsRetry())
+        {
+            m_GameOver.End();
+
+            // 前のゲームを終了して初期化し直す
+            m_GameScene.Init();
+            m_Scene = GAME;
+        }
+        // タイトルに戻る
+        else if (m_GameOver.IsReturnTitle())
         {
             m_GameOver.End();
 
