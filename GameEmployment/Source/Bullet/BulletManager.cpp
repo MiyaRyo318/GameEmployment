@@ -21,11 +21,7 @@ void BulletManager::Update()
     }
 
     // €‚ñ‚¾’e‚ğíœ
-    m_Bullets.erase(std::remove_if(m_Bullets.begin(),m_Bullets.end(),
-            [](const Bullet& bullet)
-            {
-                return bullet.IsDead();
-            }),m_Bullets.end());
+    m_Bullets.erase(std::remove_if(m_Bullets.begin(),m_Bullets.end(),[](const Bullet& bullet){return bullet.IsDead();}),m_Bullets.end());
 }
 
 void BulletManager::Draw()

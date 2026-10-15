@@ -17,8 +17,7 @@ Skybox::Skybox()
 
 void Skybox::Init()
 {
-    m_Model = MV1LoadModel(
-        "Data/Skybox/Skybox.x");
+    m_Model = MV1LoadModel("Data/Skybox/Skybox.x");
 
     if (m_Model == -1)
     {
