@@ -23,6 +23,9 @@ GameScene::GameScene()
     m_IsReturnTitle = false;
 
     m_BGMStarted = false;
+
+    m_IsWaitingStart = true;
+    m_WaitStartTime = 0;
 }
 
 GameScene::~GameScene()
@@ -60,12 +63,17 @@ void GameScene::Init()
     m_Sound.Init();
     m_SE.Init();
 
-    m_Sound.PlayBGM();
+    // BGMはまだ再生しない
+    m_BGMStarted = false;
 
-    m_BGMStarted = true;
+    // 3秒間の開始待ち
+    m_IsWaitingStart = true;
+    m_WaitStartTime = GetNowCount();
 
-    // ゲーム開始時間
-    m_StartTime = GetNowCount();
+    // ゲーム時間はまだ進めない
+    m_StartTime = 0;
+    m_CurrentTime = 0.0f;
+    m_AutoMoveTime = 0.0f;
 
     m_CurrentTime = 0.0f;
     m_AutoMoveTime = 0.0f;
@@ -74,6 +82,27 @@ void GameScene::Init()
 void GameScene::Update()
 {
     m_Input.Update();
+
+    // ゲーム開始前の待機処理
+    if (m_IsWaitingStart)
+    {
+        if (GetNowCount() - m_WaitStartTime >= 3000)
+        {
+            // 待機終了
+            m_IsWaitingStart = false;
+
+            // BGM再生開始
+            m_Sound.PlayBGM();
+            m_BGMStarted = true;
+
+            // ゲーム時間の計測開始
+            m_StartTime = GetNowCount();
+            m_CurrentTime = 0.0f;
+        }
+
+        // 待機中はゲーム処理を進めない
+        return;
+    }
 
     // ポーズ開始
     
@@ -357,7 +386,11 @@ void GameScene::Draw()
     DrawCircle(200,650,45,GetColor(255, 255, 255),FALSE);
 
     // ノーツ
-    m_NoteManager.Draw();
+    // 開始待機中はノーツを表示しない
+    if (!m_IsWaitingStart)
+    {
+        m_NoteManager.Draw();
+    }
 
     int judgeColor = GetColor(255, 255, 255);
 

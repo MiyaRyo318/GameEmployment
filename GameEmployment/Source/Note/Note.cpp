@@ -9,7 +9,7 @@ Note::Note()
     m_X = 0.0f;
     m_Y = 0.0f;
 
-    m_Speed = 300.0f;
+    m_Speed = 500.0f;
 
     m_Type = DON;
 
@@ -22,18 +22,22 @@ Note::Note()
 void Note::Create(float hitTime, NoteType type, float y, int image)
 {
     m_HitTime = hitTime;
-
     m_Type = type;
-
     m_Y = y;
-
     m_Image = image;
+
+    // 曲開始時刻を基準に、右画面外からスタート
+    m_X = JUDGE_LINE_X + m_HitTime * m_Speed;
+
+    m_IsJudge = false;
+    m_IsDelete = false;
 }
 
 void Note::Update(float currentTime)
 {
     float remain = m_HitTime - currentTime;
 
+    // 判定ラインに到達する時刻から逆算して位置を決める
     m_X = JUDGE_LINE_X + remain * m_Speed;
 
     // GOOD判定より遅れたら削除
@@ -42,6 +46,7 @@ void Note::Update(float currentTime)
         m_IsDelete = true;
     }
 }
+
 
 void Note::Draw()
 {
