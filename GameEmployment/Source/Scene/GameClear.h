@@ -10,10 +10,16 @@ public:
     void Draw();
     void End();
 
-    // ƒ^ƒCƒgƒ‹‚É–ß‚é‚©
     bool IsReturnTitle() const;
+    bool IsRetry() const;
 
 private:
+    int m_Select;
 
     bool m_ReturnTitle;
+    bool m_Retry;
+
+    bool m_OldUp;
+    bool m_OldDown;
+    bool m_OldSpace;
 };

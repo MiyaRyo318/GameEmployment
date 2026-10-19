@@ -21,6 +21,4 @@ private:
     VECTOR m_Rotation;
     VECTOR m_Scale;
 
-    // 横スクロール速度
-    float m_ScrollSpeed;
 };

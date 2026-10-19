@@ -258,14 +258,12 @@ void GameScene::Update()
                     note->SetJudge(true);
                     m_LastJudge = PERFECT;
 
-                    // オレンジノーツなら敵にダメージ
                     if (note->GetType() == ORANGE)
                     {
                         m_Enemy.Damage(30);
                     }
                     else if (note->GetType() == GREEN)
                     {
-                        // 自分を回復
                         m_Player.Heal(30);
                     }
 
@@ -354,8 +352,6 @@ void GameScene::Update()
 
 void GameScene::Draw()
 {
-    // ===== 3D =====
-
     m_Skybox.Draw();
 
     m_Player.Draw();
@@ -363,8 +359,6 @@ void GameScene::Draw()
     m_Enemy.Draw();
 
     //m_BulletManager.Draw();
-
-    // ===== 2D =====
 
     // レーン
     DrawBox(0,610,1600,690,GetColor(60, 60, 60),TRUE);
@@ -382,7 +376,7 @@ void GameScene::Draw()
     // 判定ライン
     DrawBox(198,610,202,690,GetColor(255, 255, 255),TRUE);
 
-    // 判定枠や。次の禪院家当主は俺や。
+    // 判定枠
     DrawCircle(200,650,45,GetColor(255, 255, 255),FALSE);
 
     // ノーツ

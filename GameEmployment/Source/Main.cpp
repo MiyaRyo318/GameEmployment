@@ -18,7 +18,7 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
 
     scene.Init();
 
-    while (ProcessMessage() == 0)
+    while (ProcessMessage() == 0 && !scene.IsExit())
     {
         scene.Update();
 

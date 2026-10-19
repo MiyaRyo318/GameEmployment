@@ -15,10 +15,11 @@ public:
 
 private:
     int m_Select;
-    bool m_Retry;
+
     bool m_ReturnTitle;
+    bool m_Retry;
 
     bool m_OldUp;
     bool m_OldDown;
-    bool m_OldEnter;
+    bool m_OldSpace;
 };

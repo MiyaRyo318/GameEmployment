@@ -11,7 +11,8 @@ enum SceneType
     GAME,
     GAMECLEAR,
     GAMEOVER,
-    RESULT
+    RESULT,
+    LOADING
 };
 
 class SceneManager
@@ -26,6 +27,8 @@ public:
 
     void End();
 
+    bool IsExit() const;
+
 private:
 
     SceneType m_Scene;
@@ -37,4 +40,17 @@ private:
     GameClear m_GameClear;
 
     GameOver m_GameOver;
+
+    bool m_IsExit;
+
+    // ローディング管理
+    SceneType m_NextScene;
+    int m_LoadingStartTime;
+
+    // ローディング開始
+    void StartLoading(SceneType nextScene);
+
+    // ローディング更新
+    void UpdateLoading();
+
 };

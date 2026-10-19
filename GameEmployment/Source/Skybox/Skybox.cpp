@@ -10,9 +10,6 @@ Skybox::Skybox()
     m_Rotation = VGet(0.0f,0.0f,0.0f);
 
     m_Scale = VGet(20.0f,20.0f,20.0f);
-
-    // 背景のスクロール速度や。最高速度でぶち抜いてやる
-    m_ScrollSpeed = 0.5f;
 }
 
 void Skybox::Init()
