@@ -62,7 +62,7 @@ void GameClear::Draw()
 
     DrawString(650, 350, "GAME CLEAR!", GetColor(255, 255, 255));
 
-    DrawString(650, 450,m_Select == 0 ? "> リトライ" : "  リトライ",m_Select == 0 ? GetColor(255, 255, 0) : GetColor(255, 255, 255));
+    DrawString(650, 450,m_Select == 0 ? "> もう一度プレイする" : "  リトライ",m_Select == 0 ? GetColor(255, 255, 0) : GetColor(255, 255, 255));
 
     DrawString(650, 500,m_Select == 1 ? "> タイトルに戻る" : "  タイトルに戻る",m_Select == 1 ? GetColor(255, 255, 0) : GetColor(255, 255, 255));
 
