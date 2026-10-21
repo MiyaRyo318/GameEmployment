@@ -1,5 +1,4 @@
 #pragma once
-
 #include <vector>
 #include "Note.h"
 #include "ScoreLoader.h"

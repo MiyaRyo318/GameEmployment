@@ -1,5 +1,4 @@
 #pragma once
-
 #include "GameScene.h"
 #include "TitleScene.h"
 #include "GameClear.h"

@@ -1,11 +1,11 @@
 #include "BulletManager.h"
 #include "DxLib.h"
-
 #include <algorithm>
 #include <cmath>
 
 BulletManager::BulletManager()
 {
+
 }
 
 void BulletManager::Init()

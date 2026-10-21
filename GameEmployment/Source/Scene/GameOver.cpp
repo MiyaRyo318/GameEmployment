@@ -67,6 +67,7 @@ void GameOver::Draw()
     DrawString(650, 500,m_Select == 1 ? "> タイトルに戻る" : "  タイトルに戻る",m_Select == 1 ? GetColor(255, 255, 0) : GetColor(255, 255, 255));
 
     DrawString(650, 570, "UP / DOWN : 選択", GetColor(200, 200, 200));
+
     DrawString(650, 600, "SPACE : 決定", GetColor(200, 200, 200));
 }
 

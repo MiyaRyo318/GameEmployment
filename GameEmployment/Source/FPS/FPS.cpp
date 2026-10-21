@@ -27,7 +27,8 @@ void FPSSystem::Update()
     }
 
     // サンプル数と同じ回数フレームが回ったら平均を計算する
-    if (m_Count == FPS_SAMPLE_NUM) {
+    if (m_Count == FPS_SAMPLE_NUM)
+    {
         int time = GetNowCount();
         // かかった時間（ﾐﾘ秒）をサンプル数で割り平均とする（その値が現在のFPS値）
         m_Fps = 1000.f / ((time - m_StartTime) / (float)FPS_SAMPLE_NUM);

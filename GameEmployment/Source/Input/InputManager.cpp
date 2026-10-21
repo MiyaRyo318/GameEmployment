@@ -29,67 +29,53 @@ void InputManager::Update()
 
     // âüÇµÇΩèuä‘
     
-    m_DonTrigger =
-        (m_Don && !m_OldDon);
+    m_DonTrigger = (m_Don && !m_OldDon);
 
-    m_KaTrigger =
-        (m_Ka && !m_OldKa);
+    m_KaTrigger = (m_Ka && !m_OldKa);
 
-    m_PauseTrigger =
-        (m_Pause && !m_OldPause);
+    m_PauseTrigger = (m_Pause && !m_OldPause);
 
-    m_UpTrigger =
-        (m_Up && !m_OldUp);
+    m_UpTrigger = (m_Up && !m_OldUp);
 
-    m_DownTrigger =
-        (m_Down && !m_OldDown);
+    m_DownTrigger = (m_Down && !m_OldDown);
 
-    m_EnterTrigger =
-        (m_Enter && !m_OldEnter);
+    m_EnterTrigger = (m_Enter && !m_OldEnter);
 }
-
 
 bool InputManager::IsDon() const
 {
     return m_Don;
 }
 
-
 bool InputManager::IsKa() const
 {
     return m_Ka;
 }
-
 
 bool InputManager::IsDonTrigger() const
 {
     return m_DonTrigger;
 }
 
-
 bool InputManager::IsKaTrigger() const
 {
     return m_KaTrigger;
 }
-
 
 bool InputManager::IsPauseTrigger() const
 {
     return m_PauseTrigger;
 }
 
-
 bool InputManager::IsUpTrigger() const
 {
     return m_UpTrigger;
 }
 
-
 bool InputManager::IsDownTrigger() const
 {
     return m_DownTrigger;
 }
-
 
 bool InputManager::IsEnterTrigger() const
 {

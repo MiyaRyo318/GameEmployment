@@ -1,5 +1,4 @@
 #include "ScoreLoader.h"
-
 #include <fstream>
 
 bool ScoreLoader::Load(const std::string& fileName)

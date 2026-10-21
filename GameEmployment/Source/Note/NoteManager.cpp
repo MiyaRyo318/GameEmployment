@@ -1,5 +1,4 @@
 #include "NoteManager.h"
-
 #include <algorithm>
 
 NoteManager::NoteManager()
@@ -46,8 +45,6 @@ void NoteManager::Update(float currentTime)
 
 void NoteManager::Draw()
 {
-    
-
     // ƒm[ƒc
     for (auto& note : m_Notes)
     {

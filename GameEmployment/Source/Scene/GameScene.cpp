@@ -105,7 +105,6 @@ void GameScene::Update()
     }
 
     // ポーズ開始
-    
     if (!m_IsPaused)
     {
         if (m_Input.IsPauseTrigger())
@@ -123,7 +122,6 @@ void GameScene::Update()
     }
 
     // ポーズ中
-    
     if (m_IsPaused)
     {
         // ESCで再開

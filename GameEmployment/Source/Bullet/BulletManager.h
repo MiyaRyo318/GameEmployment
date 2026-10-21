@@ -1,10 +1,8 @@
 #pragma once
-
 #include "DxLib.h"
 #include "Bullet.h"
 #include "../Enemy/Enemy.h"
 #include "../Player/Player.h"
-
 #include <vector>
 
 class BulletManager

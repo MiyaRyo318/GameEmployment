@@ -1,5 +1,4 @@
 #pragma once
-
 #include "DxLib.h"
 #include "../Camera/Camera.h"
 #include "../Note/NoteManager.h"
