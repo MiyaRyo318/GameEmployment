@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "DxLib.h"
+#include "TitleScene.h"
 
 constexpr int LOADING_TIME = 1500; // ローディング時間：1.5秒
 
@@ -11,6 +12,8 @@ void SceneManager::Init()
     m_LoadingStartTime = 0;
 
     m_TitleScene.Init();
+
+    m_SelectedDifficulty = 1;
 }
 
 // ローディング開始
@@ -37,7 +40,7 @@ void SceneManager::UpdateLoading()
         break;
 
     case GAME:
-        m_GameScene.Init();
+        m_GameScene.Init(m_SelectedDifficulty);
         break;
 
     case GAMECLEAR:
@@ -71,6 +74,8 @@ void SceneManager::Update()
 
         if (m_TitleScene.IsStart())
         {
+            m_SelectedDifficulty = m_TitleScene.GetDifficultySelect();
+
             StartLoading(GAME);
         }
         break;

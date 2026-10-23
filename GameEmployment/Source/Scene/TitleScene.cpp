@@ -254,3 +254,8 @@ bool TitleScene::IsExitGame() const
 {
     return m_IsExitGame;
 }
+
+int TitleScene::GetDifficultySelect() const
+{
+    return m_DifficultySelect;
+}

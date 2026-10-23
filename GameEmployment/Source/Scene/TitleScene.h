@@ -8,6 +8,8 @@ public:
     void Draw();
     void End();
 
+    int GetDifficultySelect() const;
+
     bool IsStart() const;
     bool IsExitGame() const;
 
@@ -34,13 +36,13 @@ private:
     MenuState m_MenuState = MenuState::MENU;
     MenuSelect m_MenuSelect = MenuSelect::GAME_START;
 
-    // 難易度：0=簡単、1=普通、2=難しい
-    int m_DifficultySelect = 1;
-
     bool m_ShowUnavailable = false;
 
     bool m_IsUpKey = false;
     bool m_IsDownKey = false;
     bool m_IsSpaceKey = false;
     bool m_IsZKey = false;
+
+    // 難易度：0=簡単、1=普通、2=難しい
+    int m_DifficultySelect = 1;
 };

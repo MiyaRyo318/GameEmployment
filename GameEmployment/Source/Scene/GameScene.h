@@ -16,7 +16,7 @@ public:
     GameScene();
     ~GameScene();
 
-    void Init();
+    void Init(int difficulty);
 
     void Update();
 
@@ -55,6 +55,8 @@ private:
     float m_CurrentTime;
 
     float m_AutoMoveTime;
+
+    int m_Difficulty;
 
     JudgeType m_LastJudge = NONE;
 

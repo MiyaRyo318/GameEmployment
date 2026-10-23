@@ -26,6 +26,8 @@ GameScene::GameScene()
 
     m_IsWaitingStart = true;
     m_WaitStartTime = 0;
+
+    m_Difficulty = 1;
 }
 
 GameScene::~GameScene()
@@ -33,8 +35,10 @@ GameScene::~GameScene()
 
 }
 
-void GameScene::Init()
+void GameScene::Init(int difficulty)
 {
+    m_Difficulty = difficulty;
+
     // ポーズ状態を初期化
     m_IsPaused = false;
     m_PauseSelect = 0;
@@ -56,7 +60,14 @@ void GameScene::Init()
     m_Enemy.Init();
 
     // ノーツ
-    m_NoteManager.Init();
+    const char* scorePath = "Data/Score/test.txt";
+
+    if (m_Difficulty == 2)
+    {
+        scorePath = "Data/Score/test_hard.txt";
+    }
+
+    m_NoteManager.Init(scorePath);
 
     m_BulletManager.Init();
 

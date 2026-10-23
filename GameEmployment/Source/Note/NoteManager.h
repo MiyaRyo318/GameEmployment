@@ -11,7 +11,7 @@ public:
 
     ~NoteManager();
 
-    void Init();
+    void Init(const char* scorePath);
 
     void Update(float currentTime);
 

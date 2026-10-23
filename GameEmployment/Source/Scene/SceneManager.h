@@ -52,4 +52,6 @@ private:
     // ローディング更新
     void UpdateLoading();
 
+    int m_SelectedDifficulty;
+
 };

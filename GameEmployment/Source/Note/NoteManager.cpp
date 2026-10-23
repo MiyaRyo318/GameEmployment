@@ -11,13 +11,14 @@ NoteManager::~NoteManager()
 
 }
 
-void NoteManager::Init()
+
+void NoteManager::Init(const char* scorePath)
 {
     m_Notes.clear();
 
     constexpr float NOTE_Y = 650.0f;
 
-    if (!m_ScoreLoader.Load("Data/Score/test.txt"))
+    if (!m_ScoreLoader.Load(scorePath))
     {
         return;
     }
@@ -26,9 +27,10 @@ void NoteManager::Init()
 
     for (const auto& note : score)
     {
-        AddNote(note.HitTime,note.Type,NOTE_Y);
+        AddNote(note.HitTime, note.Type, NOTE_Y);
     }
 }
+
 
 void NoteManager::Update(float currentTime)
 {
