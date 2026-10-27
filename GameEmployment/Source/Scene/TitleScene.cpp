@@ -81,16 +81,9 @@ void TitleScene::Update()
         // SPACEキーで難易度を決定
         if (spacePressed)
         {
-            if (m_DifficultySelect == 1)
-            {
-                // 普通はプレイ可能
-                m_IsStart = true;
-            }
-            else
-            {
-                // 簡単・難しいはまだ未実装
-                m_ShowUnavailable = true;
-            }
+            // 選択した難易度でゲームを開始
+            m_IsStart = true;
+            m_ShowUnavailable = false;
         }
     }
     // タイトルメニュー
