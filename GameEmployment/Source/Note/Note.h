@@ -6,7 +6,8 @@ enum NoteType
     DON,
     KA,
     ORANGE,
-    GREEN
+    GREEN,
+    RENDAN
 };
 
 class Note
@@ -15,7 +16,7 @@ public:
 
     Note();
 
-    void Create(float hitTime, NoteType type, float y, int image);
+    void Create(float hitTime, NoteType type, float y, int image,float duration = 0.0f);
 
     void Update(float currentTime);
 
@@ -37,6 +38,10 @@ public:
 
     NoteType GetType() const;
 
+    void AddRendanHit();
+    int GetRendanHits() const;
+    float GetDuration() const;
+
 private:
 
     float m_HitTime;
@@ -53,4 +58,7 @@ private:
     bool m_IsDelete;
 
     int m_Image;
+
+    float m_Duration;
+    int m_RendanHits;
 };

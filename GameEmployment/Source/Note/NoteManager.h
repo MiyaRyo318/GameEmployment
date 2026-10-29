@@ -17,7 +17,7 @@ public:
 
     void Draw();
 
-    void AddNote(float hitTime, NoteType type, float y);
+    void AddNote(float hitTime, NoteType type, float y,float duration = 0.0f);
 
     void Clear();
 

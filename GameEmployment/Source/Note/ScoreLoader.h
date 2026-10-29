@@ -7,6 +7,7 @@ struct ScoreData
 {
     float HitTime;
     NoteType Type;
+    float Duration = 0.0f;
 };
 
 class ScoreLoader

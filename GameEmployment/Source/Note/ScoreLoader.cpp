@@ -13,14 +13,15 @@ bool ScoreLoader::Load(const std::string& fileName)
     }
 
     float time;
-
     std::string type;
+    float duration;
 
     while (fin >> time >> type)
     {
         ScoreData data;
 
         data.HitTime = time;
+        data.Duration = 0.0f;
 
         if (type == "DON")
         {
@@ -37,6 +38,15 @@ bool ScoreLoader::Load(const std::string& fileName)
         else if (type == "GREEN")
         {
             data.Type = GREEN;
+        }
+        else if (type == "RENDAN")
+        {
+            data.Type = RENDAN;
+
+            if (!(fin >> data.Duration))
+            {
+                data.Duration = 2.0f;
+            }
         }
         else
         {

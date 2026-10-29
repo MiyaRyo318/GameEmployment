@@ -233,6 +233,18 @@ void GameScene::Update()
         {
             bool canHit = false;
 
+            if (note->GetType() == RENDAN)
+            {
+                float startTime = note->GetHitTime();
+                float endTime = startTime + note->GetDuration();
+
+                if (m_CurrentTime >= startTime &&
+                    m_CurrentTime <= endTime)
+                {
+                    note->AddRendanHit();
+                }
+            }
+
             // ƒm[ƒc‚ÌŽí—Þ‚É‚æ‚Á‚Ä’@‚¯‚éƒL[‚ðŒˆ‚ß‚é
             if (note->GetType() == DON)
             {

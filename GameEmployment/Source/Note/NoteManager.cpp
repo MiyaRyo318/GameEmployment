@@ -27,7 +27,7 @@ void NoteManager::Init(const char* scorePath)
 
     for (const auto& note : score)
     {
-        AddNote(note.HitTime, note.Type, NOTE_Y);
+        AddNote(note.HitTime, note.Type, NOTE_Y, note.Duration);
     }
 }
 
@@ -57,11 +57,11 @@ void NoteManager::Draw()
     DrawFormatString(20,20,GetColor(255, 255, 255),"Note Count : %d",(int)m_Notes.size());
 }
 
-void NoteManager::AddNote(float hitTime,NoteType type,float y)
+void NoteManager::AddNote(float hitTime, NoteType type, float y, float duration)
 {
     Note note;
 
-    note.Create(hitTime,type,y,-1);
+    note.Create(hitTime, type, y, -1, duration);
 
     m_Notes.push_back(note);
 }
@@ -134,6 +134,12 @@ bool NoteManager::AutoMiss(float currentTime)
     Note& note = m_Notes.front();
 
     if (note.IsJudge() || note.IsDelete())
+    {
+        return false;
+    }
+
+    // 連打ノーツは終了時刻まで自動MISSにしない
+    if (note.GetType() == RENDAN)
     {
         return false;
     }
