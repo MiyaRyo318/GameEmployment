@@ -62,7 +62,11 @@ void GameScene::Init(int difficulty)
     // ÉmÅ[Éc
     const char* scorePath = "Data/Score/test.txt";
 
-    if (m_Difficulty == 2)
+    if (m_Difficulty == 0)
+    {
+        scorePath = "Data/Score/test_easy.txt";
+    }
+    else if (m_Difficulty == 2)
     {
         scorePath = "Data/Score/test_hard.txt";
     }
