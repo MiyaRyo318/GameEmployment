@@ -249,7 +249,6 @@ void GameScene::Update()
                 }
             }
 
-            // ノーツの種類によって叩けるキーを決める
             if (note->GetType() == DON)
             {
                 // 赤ノーツはドンだけ
