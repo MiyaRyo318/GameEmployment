@@ -249,25 +249,20 @@ void GameScene::Update()
                 }
             }
 
-            if (note->GetType() == DON)
+            switch (note->GetType())
             {
-                // 赤ノーツはドンだけ
+            case DON:
                 canHit = don;
-            }
-            else if (note->GetType() == KA)
-            {
-                // 青ノーツはカッだけ
+                break;
+
+            case KA:
                 canHit = ka;
-            }
-            else if (note->GetType() == ORANGE)
-            {
-                // オレンジノーツはドンでもカッでもOK
+                break;
+
+            case ORANGE:
+            case GREEN:
                 canHit = don || ka;
-            }
-            else if (note->GetType() == GREEN)
-            {
-                // 緑ノーツはドンでもカッでもOK
-                canHit = don || ka;
+                break;
             }
 
             if (canHit)
