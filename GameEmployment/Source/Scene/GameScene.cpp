@@ -399,7 +399,6 @@ void GameScene::Draw()
     DrawCircle(200,650,45,GetColor(255, 255, 255),FALSE);
 
     // ノーツ
-    // 開始待機中はノーツを表示しない
     if (!m_IsWaitingStart)
     {
         m_NoteManager.Draw();
