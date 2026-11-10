@@ -72,8 +72,6 @@ void Enemy::StartAttack()
 
 void Enemy::Draw()
 {
-
-    // Enemyƒ‚ƒfƒ‹
     if (m_Model != -1)
     {
         MV1DrawModel(m_Model);
