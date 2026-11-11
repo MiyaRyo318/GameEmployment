@@ -8,6 +8,7 @@
 #include "../Player/Player.h"
 #include "../Enemy/Enemy.h"
 #include "../Bullet/BulletManager.h"
+#include "../Pause/Pause.h"
 
 class GameScene
 {
@@ -60,14 +61,7 @@ private:
 
     JudgeType m_LastJudge = NONE;
 
-    // ポーズ
-    
-    bool m_IsPaused;
-
-    // 0 = 再開
-    // 1 = リトライ
-    // 2 = タイトルに戻る
-    int m_PauseSelect;
+    Pause m_Pause;
 
     bool m_IsRetry;
     bool m_IsReturnTitle;

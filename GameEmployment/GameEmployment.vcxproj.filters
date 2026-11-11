@@ -40,6 +40,9 @@
     <Filter Include="Source\Bullet">
       <UniqueIdentifier>{6ad52ca0-dd68-4bf5-bed9-483d6d2858b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Pause">
+      <UniqueIdentifier>{1770cd70-0807-49a9-aafe-b45992a51e0e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -102,6 +105,9 @@
     <ClCompile Include="Source\Scene\GameOver.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Pause\Pause.cpp">
+      <Filter>Source\Pause</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Scene\SceneManager.h">
@@ -160,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="Source\Scene\GameOver.h">
       <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Pause\Pause.h">
+      <Filter>Source\Pause</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

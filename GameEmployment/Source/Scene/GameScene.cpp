@@ -5,6 +5,7 @@
 #include "../Player/Player.h"
 #include "../Enemy/Enemy.h"
 #include "../Skybox/Skybox.h"
+#include "../Pause/Pause.h"
 
 SE m_SE;
 
@@ -15,9 +16,6 @@ GameScene::GameScene()
     m_StartTime = 0;
     m_CurrentTime = 0.0f;
     m_AutoMoveTime = 0.0f;
-
-    m_IsPaused = false;
-    m_PauseSelect = 0;
 
     m_IsRetry = false;
     m_IsReturnTitle = false;
@@ -39,12 +37,11 @@ void GameScene::Init(int difficulty)
 {
     m_Difficulty = difficulty;
 
-    // ポーズ状態を初期化
-    m_IsPaused = false;
-    m_PauseSelect = 0;
-
     m_IsRetry = false;
     m_IsReturnTitle = false;
+
+    // ポーズ初期化
+    m_Pause.Init();
 
     m_LastJudge = NONE;
 
@@ -98,6 +95,53 @@ void GameScene::Update()
 {
     m_Input.Update();
 
+    // ポーズ開始・ポーズ中の処理
+    if (m_Pause.IsPaused())
+    {
+        PauseResult result = m_Pause.Update(m_Input);
+
+        switch (result)
+        {
+        case PauseResult::Resume:
+
+            // ゲーム時間を再開
+            m_StartTime =
+                GetNowCount() - (int)(m_CurrentTime * 1000.0f);
+
+            // BGM再開
+            m_Sound.PlayBGM();
+
+            break;
+
+        case PauseResult::Retry:
+
+            m_IsRetry = true;
+            return;
+
+        case PauseResult::ReturnTitle:
+
+            m_IsReturnTitle = true;
+            return;
+
+        case PauseResult::None:
+            break;
+        }
+
+        // ポーズ中はゲームの処理を進めない
+        return;
+    }
+
+    // ポーズ開始判定
+    if (!m_IsWaitingStart && m_Input.IsPauseTrigger())
+    {
+        m_Pause.Start();
+
+        // BGM停止
+        m_Sound.StopBGM();
+
+        return;
+    }
+
     // ゲーム開始前の待機処理
     if (m_IsWaitingStart)
     {
@@ -119,89 +163,7 @@ void GameScene::Update()
         return;
     }
 
-    // ポーズ開始
-    if (!m_IsPaused)
-    {
-        if (m_Input.IsPauseTrigger())
-        {
-            m_IsPaused = true;
-
-            // 初期選択は「再開」
-            m_PauseSelect = 0;
-
-            // BGM停止
-            m_Sound.StopBGM();
-
-            return;
-        }
-    }
-
-    // ポーズ中
-    if (m_IsPaused)
-    {
-        // ESCで再開
-        if (m_Input.IsPauseTrigger())
-        {
-            m_IsPaused = false;
-
-            m_StartTime = GetNowCount() - (int)(m_CurrentTime * 1000.0f);
-
-            m_Sound.PlayBGM();
-
-            return;
-        }
-
-        // 上
-        if (m_Input.IsUpTrigger())
-        {
-            m_PauseSelect--;
-
-            if (m_PauseSelect < 0)
-            {
-                m_PauseSelect = 2;
-            }
-        }
-
-        // 下
-        if (m_Input.IsDownTrigger())
-        {
-            m_PauseSelect++;
-
-            if (m_PauseSelect > 2)
-            {
-                m_PauseSelect = 0;
-            }
-        }
-
-        // 決定
-        if (m_Input.IsEnterTrigger())
-        {
-            if (m_PauseSelect == 0)
-            {
-                // 再開
-                m_IsPaused = false;
-
-                m_StartTime = GetNowCount() - (int)(m_CurrentTime * 1000.0f);
-
-                m_Sound.PlayBGM();
-            }
-            else if (m_PauseSelect == 1)
-            {
-                // リトライ
-                m_IsRetry = true;
-                return;
-            }
-            else if (m_PauseSelect == 2)
-            {
-                // タイトルに戻る
-                m_IsReturnTitle = true;
-                return;
-            }
-        }
-
-        return;
-    }
-
+    
     // 経過時間(秒)
     m_CurrentTime = (GetNowCount() - m_StartTime) / 1000.0f;
 
@@ -474,49 +436,8 @@ void GameScene::Draw()
     // HP表示
     DrawFormatString(1280,55,GetColor(255, 255, 255),"ENEMY HP : %d / 100",m_Enemy.GetHP());
 
-// ポーズ画面
-    if (m_IsPaused)
-    {
-        // 画面を暗くする
-        SetDrawBlendMode(DX_BLENDMODE_ALPHA,180);
-
-        DrawBox(0,0,1600,900,GetColor(0, 0, 0),TRUE);
-
-        SetDrawBlendMode(DX_BLENDMODE_NOBLEND,0);
-
-        int white = GetColor(255, 255, 255);
-
-        int yellow = GetColor(255, 255, 0);
-
-        // PAUSE
-        DrawString(760,180,"PAUSE",white);
-
-        // メニュー
-        int resumeColor = white;
-        int retryColor = white;
-        int titleColor = white;
-
-        if (m_PauseSelect == 0)
-        {
-            resumeColor = yellow;
-        }
-        else if (m_PauseSelect == 1)
-        {
-            retryColor = yellow;
-        }
-        else if (m_PauseSelect == 2)
-        {
-            titleColor = yellow;
-        }
-
-        DrawString(700,350,"再開",resumeColor);
-
-        DrawString(700,420,"リトライ",retryColor);
-
-        DrawString(700,490,"タイトルに戻る",titleColor);
-
-        DrawFormatString(580, 780, GetColor(255, 255, 255),"↑ / ↓：選択    SPACE：決定    ESC：再開");
-    }
+    // ポーズ画面
+    m_Pause.Draw();
 }
 
 void GameScene::End()
