@@ -119,7 +119,6 @@ void Pause::Draw()
     DrawString(700, 350, "再開", resumeColor);
     DrawString(700, 420, "リトライ", retryColor);
     DrawString(700, 490, "タイトルに戻る", titleColor);
-
     DrawFormatString(580, 780,white,"↑ / ↓：選択    SPACE：決定    ESC：再開");
 }
 

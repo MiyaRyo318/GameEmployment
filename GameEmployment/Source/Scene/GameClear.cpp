@@ -73,6 +73,7 @@ void GameClear::Draw()
 
 void GameClear::End()
 {
+
 }
 
 bool GameClear::IsReturnTitle() const

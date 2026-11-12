@@ -73,6 +73,7 @@ void GameOver::Draw()
 
 void GameOver::End()
 {
+
 }
 
 bool GameOver::IsReturnTitle() const
