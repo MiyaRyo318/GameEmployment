@@ -14,7 +14,6 @@ bool ScoreLoader::Load(const std::string& fileName)
 
     float time;
     std::string type;
-    float duration;
 
     while (fin >> time >> type)
     {
@@ -47,6 +46,10 @@ bool ScoreLoader::Load(const std::string& fileName)
             {
                 data.Duration = 2.0f;
             }
+        }
+        else if (type == "BRANCH")
+        {
+            data.Type = BRANCH;
         }
         else
         {

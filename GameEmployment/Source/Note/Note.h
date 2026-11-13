@@ -7,7 +7,8 @@ enum NoteType
     KA,
     ORANGE,
     GREEN,
-    RENDAN
+    RENDAN,
+    BRANCH
 };
 
 class Note
