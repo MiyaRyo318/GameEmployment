@@ -64,6 +64,7 @@ void Note::Update(float currentTime)
     }
 }
 
+
 void Note::Draw()
 {
     // 連打ノーツは横長に描画
@@ -71,10 +72,8 @@ void Note::Draw()
     {
         int color = GetColor(255, 220, 0);
 
-        // 連打時間に応じて横幅を決める
         float length = m_Duration * m_Speed;
 
-        // 高さと角の丸み
         int halfHeight = 22;
         int radius = 22;
 
@@ -83,25 +82,20 @@ void Note::Draw()
         int top = (int)m_Y - halfHeight;
         int bottom = (int)m_Y + halfHeight;
 
-        // 横長の本体
-        DrawBox(left + radius, top,right - radius, bottom,color, TRUE);
+        DrawBox(left + radius, top, right - radius, bottom, color, TRUE);
+        DrawCircle(left + radius, (int)m_Y, radius, color, TRUE);
+        DrawCircle(right - radius, (int)m_Y, radius, color, TRUE);
 
-        // 左右の丸い端
-        DrawCircle(left + radius, (int)m_Y,radius, color, TRUE);
+        DrawBox(left + radius, top, right - radius, bottom,GetColor(255, 255, 255), FALSE);
 
-        DrawCircle(right - radius, (int)m_Y,radius, color, TRUE);
+        DrawCircle(left + radius, (int)m_Y, radius,GetColor(255, 255, 255), FALSE);
 
-        // 白い縁取り
-        DrawBox(left + radius, top,right - radius, bottom,GetColor(255, 255, 255), FALSE);
-
-        DrawCircle(left + radius, (int)m_Y,radius, GetColor(255, 255, 255), FALSE);
-
-        DrawCircle(right - radius, (int)m_Y,radius, GetColor(255, 255, 255), FALSE);
+        DrawCircle(right - radius, (int)m_Y, radius,GetColor(255, 255, 255), FALSE);
 
         return;
     }
 
-    // 通常ノーツは従来どおり丸く描画
+    // 通常ノーツの色
     int color = GetColor(255, 255, 255);
 
     if (m_Type == DON)
@@ -120,11 +114,23 @@ void Note::Draw()
     {
         color = GetColor(0, 200, 0);
     }
+    else if (m_Type == BRANCH)
+    {
+        // 分岐ノーツは紫色
+        color = GetColor(180, 0, 255);
+    }
 
     DrawCircle((int)m_X, (int)m_Y, 28,GetColor(255, 255, 255), TRUE);
 
     DrawCircle((int)m_X, (int)m_Y, 22, color, TRUE);
+
+    // 分岐ノーツにはBの文字を表示
+    if (m_Type == BRANCH)
+    {
+        DrawString((int)m_X - 7, (int)m_Y - 8,"B", GetColor(255, 255, 255));
+    }
 }
+
 
 void Note::SetJudge(bool judge)
 {

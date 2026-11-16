@@ -66,6 +66,7 @@ private:
     bool m_IsRetry;
     bool m_IsReturnTitle;
     bool m_BGMStarted;
+    bool m_IsBranchRequested;
 
     // ゲーム開始前の待機
     bool m_IsWaitingStart;

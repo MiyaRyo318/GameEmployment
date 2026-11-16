@@ -19,8 +19,8 @@ GameScene::GameScene()
 
     m_IsRetry = false;
     m_IsReturnTitle = false;
-
     m_BGMStarted = false;
+    m_IsBranchRequested = false;
 
     m_IsWaitingStart = true;
     m_WaitStartTime = 0;
@@ -225,6 +225,10 @@ void GameScene::Update()
             case GREEN:
                 canHit = don || ka;
                 break;
+
+            case BRANCH:
+                canHit = don || ka;
+                break;
             }
 
             if (canHit)
@@ -247,6 +251,10 @@ void GameScene::Update()
                     {
                         m_Player.Heal(30);
                     }
+                    else if (note->GetType() == BRANCH)
+                    {
+                        m_IsBranchRequested = true;
+                    }
 
                     break;
 
@@ -263,6 +271,10 @@ void GameScene::Update()
                     {
                         m_Player.Heal(30);
                     }
+                    else if (note->GetType() == BRANCH)
+                    {
+                        m_IsBranchRequested = true;
+                    }
 
                     break;
 
@@ -278,6 +290,10 @@ void GameScene::Update()
                     else if (note->GetType() == GREEN)
                     {
                         m_Player.Heal(30);
+                    }
+                    else if (note->GetType() == BRANCH)
+                    {
+                        m_IsBranchRequested = true;
                     }
 
                     break;
