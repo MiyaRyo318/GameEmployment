@@ -25,6 +25,7 @@ bool SE::Init()
     m_MissSE = LoadSoundMem("Data/Sound/Miss.wav");
 
     m_DonSE = LoadSoundMem("Data/Sound/Don.wav");
+
     m_KaSE = LoadSoundMem("Data/Sound/Ka.wav");
 
     ChangeVolumeSoundMem(150, m_DonSE);
