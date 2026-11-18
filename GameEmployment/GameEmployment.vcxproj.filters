@@ -43,6 +43,9 @@
     <Filter Include="Source\Pause">
       <UniqueIdentifier>{1770cd70-0807-49a9-aafe-b45992a51e0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\StageSelect">
+      <UniqueIdentifier>{6c3426eb-ea35-40fa-9631-5fd3dc118339}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -108,6 +111,9 @@
     <ClCompile Include="Source\Pause\Pause.cpp">
       <Filter>Source\Pause</Filter>
     </ClCompile>
+    <ClCompile Include="Source\StageSelect\StageSelect.cpp">
+      <Filter>Source\StageSelect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Scene\SceneManager.h">
@@ -169,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Source\Pause\Pause.h">
       <Filter>Source\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageSelect\StageSelect.h">
+      <Filter>Source\StageSelect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

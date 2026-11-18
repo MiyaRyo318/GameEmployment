@@ -152,6 +152,7 @@
     <ClCompile Include="Source\Skybox\Skybox.cpp" />
     <ClCompile Include="Source\Sound\SE.cpp" />
     <ClCompile Include="Source\Sound\Sound.cpp" />
+    <ClCompile Include="Source\StageSelect\StageSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Bullet\Bullet.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Source\Skybox\Skybox.h" />
     <ClInclude Include="Source\Sound\SE.h" />
     <ClInclude Include="Source\Sound\Sound.h" />
+    <ClInclude Include="Source\StageSelect\StageSelect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

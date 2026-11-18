@@ -20,6 +20,13 @@ public:
     bool IsDownTrigger() const;
     bool IsEnterTrigger() const;
 
+    // ï™äÚëIë
+    bool IsLeftTrigger() const;
+    bool IsRightTrigger() const;
+
+    // SPACEÉLÅ[
+    bool IsSpaceTrigger() const;
+
 private:
 
     bool m_Don = false;
@@ -50,4 +57,19 @@ private:
     bool m_Enter = false;
     bool m_OldEnter = false;
     bool m_EnterTrigger = false;
+
+    // Å©
+    bool m_Left = false;
+    bool m_OldLeft = false;
+    bool m_LeftTrigger = false;
+
+    // Å®
+    bool m_Right = false;
+    bool m_OldRight = false;
+    bool m_RightTrigger = false;
+
+    // SPACE
+    bool m_Space = false;
+    bool m_OldSpace = false;
+    bool m_SpaceTrigger = false;
 };

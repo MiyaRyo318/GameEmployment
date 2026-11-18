@@ -26,6 +26,9 @@ GameScene::GameScene()
     m_WaitStartTime = 0;
 
     m_Difficulty = 1;
+
+    m_IsBranchSelecting = false;
+    m_SelectedBranch = 0;
 }
 
 GameScene::~GameScene()
@@ -89,11 +92,79 @@ void GameScene::Init(int difficulty)
 
     m_CurrentTime = 0.0f;
     m_AutoMoveTime = 0.0f;
+
+    m_IsBranchRequested = false;
+    m_IsBranchSelecting = false;
+    m_SelectedBranch = 0;
+
+    m_IsBranchCountdown = false;
+    m_BranchCountdownStart = 0;
+    m_BranchPauseStart = 0;
 }
 
 void GameScene::Update()
 {
     m_Input.Update();
+
+    // 分岐画面に入る
+    if (m_IsBranchRequested && !m_IsBranchSelecting)
+    {
+        m_IsBranchSelecting = true;
+        m_SelectedBranch = 0;
+
+        // 停止時刻を記録
+        m_BranchPauseStart = GetNowCount();
+
+        // BGM停止
+        m_Sound.StopBGM();
+    }
+
+    // 分岐選択中
+    if (m_IsBranchSelecting)
+    {
+        // 左キー：Aルート
+        if (m_Input.IsLeftTrigger())
+        {
+            m_SelectedBranch = 0;
+        }
+
+        // 右キー：Bルート
+        if (m_Input.IsRightTrigger())
+        {
+            m_SelectedBranch = 1;
+        }
+
+        // SPACE：決定
+        if (m_Input.IsSpaceTrigger())
+        {
+            m_IsBranchSelecting = false;
+
+            // カウントダウン開始
+            m_IsBranchCountdown = true;
+            m_BranchCountdownStart = GetNowCount();
+        }
+
+        return;
+    }
+
+    // 3秒カウントダウン
+    if (m_IsBranchCountdown)
+    {
+        int elapsed = GetNowCount() - m_BranchCountdownStart;
+
+        if (elapsed >= 3000)
+        {
+            // 停止していた時間をゲーム時間から除外
+            m_StartTime += GetNowCount() - m_BranchPauseStart;
+
+            m_IsBranchCountdown = false;
+
+            // BGM再開
+            m_Sound.PlayBGM();
+        }
+
+        return;
+    }
 
     // ポーズ開始・ポーズ中の処理
     if (m_Pause.IsPaused())
@@ -452,6 +523,62 @@ void GameScene::Draw()
     // HP表示
     DrawFormatString(1280,55,GetColor(255, 255, 255),"ENEMY HP : %d / 100",m_Enemy.GetHP());
 
+    DrawFormatString(700, 100, GetColor(255, 255, 0),
+        "Branch Request : %d", m_IsBranchRequested);
+
+    Note* debugNote = m_NoteManager.GetJudgeNote();
+
+    if (debugNote)
+    {
+        DrawFormatString(700, 130, GetColor(255, 255, 255),
+            "Note Type : %d", debugNote->GetType());
+    }
+
+    // 分岐選択画面
+    if (m_IsBranchSelecting)
+    {
+        DrawBox(400, 300, 1200, 600,
+            GetColor(20, 20, 50), TRUE);
+
+        DrawString(700, 350, "BRANCH SELECT",
+            GetColor(255, 255, 0));
+
+        // Aルート
+        int colorA = (m_SelectedBranch == 0)
+            ? GetColor(255, 255, 0)
+            : GetColor(180, 180, 180);
+
+        // Bルート
+        int colorB = (m_SelectedBranch == 1)
+            ? GetColor(255, 255, 0)
+            : GetColor(180, 180, 180);
+
+        DrawString(550, 450, "A ROUTE", colorA);
+        DrawString(950, 450, "B ROUTE", colorB);
+
+        DrawString(600, 540,
+            "LEFT / RIGHT : SELECT",
+            GetColor(255, 255, 255));
+
+        DrawString(650, 570,
+            "SPACE : DECIDE",
+            GetColor(255, 255, 255));
+    }
+
+    // 再開カウントダウン
+    if (m_IsBranchCountdown)
+    {
+        int elapsed = GetNowCount() - m_BranchCountdownStart;
+
+        int count = (3000 - elapsed + 999) / 1000;
+
+        if (count > 0)
+        {
+            DrawFormatString(750, 400,
+                GetColor(255, 255, 0), "%d", count);
+        }
+    }
+
     // ポーズ画面
     m_Pause.Draw();
 }
@@ -475,6 +602,11 @@ bool GameScene::IsGameClear() const
 bool GameScene::IsGameOver() const
 {
     return m_Player.IsDead();
+}
+
+bool GameScene::IsBranchRequested() const
+{
+    return m_IsBranchRequested;
 }
 
 bool GameScene::IsRetry() const

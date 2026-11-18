@@ -11,6 +11,7 @@ enum SceneType
     GAMECLEAR,
     GAMEOVER,
     RESULT,
+    STAGESELECT,
     LOADING
 };
 

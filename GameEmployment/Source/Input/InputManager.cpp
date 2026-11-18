@@ -15,6 +15,10 @@ void InputManager::Update()
 
     m_OldEnter = m_Enter;
 
+    m_OldLeft = m_Left;
+    m_OldRight = m_Right;
+    m_OldSpace = m_Space;
+
     // åªç›ÇÃèÛë‘
     
     m_Don = CheckHitKey(KEY_INPUT_F);
@@ -26,6 +30,10 @@ void InputManager::Update()
     m_Down = CheckHitKey(KEY_INPUT_DOWN);
 
     m_Enter = CheckHitKey(KEY_INPUT_SPACE);
+
+    m_Left = CheckHitKey(KEY_INPUT_LEFT);
+    m_Right = CheckHitKey(KEY_INPUT_RIGHT);
+    m_Space = CheckHitKey(KEY_INPUT_SPACE);
 
     // âüÇµÇΩèuä‘
     
@@ -40,6 +48,10 @@ void InputManager::Update()
     m_DownTrigger = (m_Down && !m_OldDown);
 
     m_EnterTrigger = (m_Enter && !m_OldEnter);
+
+    m_LeftTrigger = (m_Left && !m_OldLeft);
+    m_RightTrigger = (m_Right && !m_OldRight);
+    m_SpaceTrigger = (m_Space && !m_OldSpace);
 }
 
 bool InputManager::IsDon() const
@@ -78,6 +90,21 @@ bool InputManager::IsDownTrigger() const
 }
 
 bool InputManager::IsEnterTrigger() const
+{
+    return m_EnterTrigger;
+}
+
+bool InputManager::IsLeftTrigger() const
+{
+    return m_LeftTrigger;
+}
+
+bool InputManager::IsRightTrigger() const
+{
+    return m_RightTrigger;
+}
+
+bool InputManager::IsSpaceTrigger() const
 {
     return m_EnterTrigger;
 }

@@ -29,6 +29,8 @@ public:
 
     bool IsGameOver() const;
 
+    bool IsBranchRequested() const;
+
     // ポーズ結果
     bool IsRetry() const;
     bool IsReturnTitle() const;
@@ -71,4 +73,17 @@ private:
     // ゲーム開始前の待機
     bool m_IsWaitingStart;
     int m_WaitStartTime;
+
+    // 分岐画面
+    bool m_IsBranchSelecting;
+
+    // 分岐ルート
+    int m_SelectedBranch;
+
+    // 分岐後の再開カウントダウン
+    bool m_IsBranchCountdown;
+    int m_BranchCountdownStart;
+
+    // 分岐画面に入った時刻
+    int m_BranchPauseStart;
 };
