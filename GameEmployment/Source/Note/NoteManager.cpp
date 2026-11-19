@@ -11,7 +11,6 @@ NoteManager::~NoteManager()
 
 }
 
-
 void NoteManager::Init(const char* scorePath)
 {
     m_Notes.clear();
@@ -54,7 +53,7 @@ void NoteManager::Draw()
     }
 
     // デバッグ
-    DrawFormatString(20,20,GetColor(255, 255, 255),"Note Count : %d",(int)m_Notes.size());
+    //DrawFormatString(20,20,GetColor(255, 255, 255),"Note Count : %d",(int)m_Notes.size());
 }
 
 void NoteManager::AddNote(float hitTime, NoteType type, float y, float duration)

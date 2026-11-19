@@ -77,7 +77,7 @@ void Enemy::Draw()
         MV1DrawModel(m_Model);
     }
 
-    DrawFormatString(20,120,GetColor(255, 255, 255),"ENEMY DRAW OK");
+    //DrawFormatString(20,120,GetColor(255, 255, 255),"ENEMY DRAW OK");
 }
 
 void Enemy::End()

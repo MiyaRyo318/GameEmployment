@@ -176,8 +176,7 @@ void GameScene::Update()
         case PauseResult::Resume:
 
             // ゲーム時間を再開
-            m_StartTime =
-                GetNowCount() - (int)(m_CurrentTime * 1000.0f);
+            m_StartTime = GetNowCount() - (int)(m_CurrentTime * 1000.0f);
 
             // BGM再開
             m_Sound.PlayBGM();
@@ -233,7 +232,6 @@ void GameScene::Update()
         // 待機中はゲーム処理を進めない
         return;
     }
-
     
     // 経過時間(秒)
     m_CurrentTime = (GetNowCount() - m_StartTime) / 1000.0f;
@@ -493,11 +491,11 @@ void GameScene::Draw()
 
     if (note)
     {
-        DrawFormatString(20,50,GetColor(255, 255, 255),"Now : %.2f",m_CurrentTime);
+        //DrawFormatString(20,50,GetColor(255, 255, 255),"Now : %.2f",m_CurrentTime);
 
-        DrawFormatString(20,70,GetColor(255, 255, 255),"Hit : %.2f",note->GetHitTime());
+        //DrawFormatString(20,70,GetColor(255, 255, 255),"Hit : %.2f",note->GetHitTime());
 
-        DrawFormatString(20,90,GetColor(255, 255, 255),"Diff : %.2f",fabs(note->GetHitTime() - m_CurrentTime));
+        //DrawFormatString(20,90,GetColor(255, 255, 255),"Diff : %.2f",fabs(note->GetHitTime() - m_CurrentTime));
     }
 
     // HPゲージ背景
@@ -523,46 +521,27 @@ void GameScene::Draw()
     // HP表示
     DrawFormatString(1280,55,GetColor(255, 255, 255),"ENEMY HP : %d / 100",m_Enemy.GetHP());
 
-    DrawFormatString(700, 100, GetColor(255, 255, 0),
-        "Branch Request : %d", m_IsBranchRequested);
-
     Note* debugNote = m_NoteManager.GetJudgeNote();
-
-    if (debugNote)
-    {
-        DrawFormatString(700, 130, GetColor(255, 255, 255),
-            "Note Type : %d", debugNote->GetType());
-    }
 
     // 分岐選択画面
     if (m_IsBranchSelecting)
     {
-        DrawBox(400, 300, 1200, 600,
-            GetColor(20, 20, 50), TRUE);
+        DrawBox(400, 300, 1200, 600,GetColor(20, 20, 50), TRUE);
 
-        DrawString(700, 350, "BRANCH SELECT",
-            GetColor(255, 255, 0));
+        DrawString(700, 350, "BRANCH SELECT",GetColor(255, 255, 0));
 
         // Aルート
-        int colorA = (m_SelectedBranch == 0)
-            ? GetColor(255, 255, 0)
-            : GetColor(180, 180, 180);
+        int colorA = (m_SelectedBranch == 0)? GetColor(255, 255, 0): GetColor(180, 180, 180);
 
         // Bルート
-        int colorB = (m_SelectedBranch == 1)
-            ? GetColor(255, 255, 0)
-            : GetColor(180, 180, 180);
+        int colorB = (m_SelectedBranch == 1)? GetColor(255, 255, 0): GetColor(180, 180, 180);
 
         DrawString(550, 450, "A ROUTE", colorA);
         DrawString(950, 450, "B ROUTE", colorB);
 
-        DrawString(600, 540,
-            "LEFT / RIGHT : SELECT",
-            GetColor(255, 255, 255));
+        DrawString(600, 540,"LEFT / RIGHT : SELECT",GetColor(255, 255, 255));
 
-        DrawString(650, 570,
-            "SPACE : DECIDE",
-            GetColor(255, 255, 255));
+        DrawString(650, 570,"SPACE : DECIDE",GetColor(255, 255, 255));
     }
 
     // 再開カウントダウン
@@ -574,8 +553,7 @@ void GameScene::Draw()
 
         if (count > 0)
         {
-            DrawFormatString(750, 400,
-                GetColor(255, 255, 0), "%d", count);
+            DrawFormatString(750, 400,GetColor(255, 255, 0), "%d", count);
         }
     }
 

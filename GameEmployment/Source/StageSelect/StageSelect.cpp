@@ -51,20 +51,17 @@ void StageSelect::Draw()
     DrawString(650, 200, "STAGE SELECT", GetColor(255, 255, 255));
 
     // ステージ1
-    int color1 = (m_SelectedStage == 0)
-        ? GetColor(255, 255, 0)
-        : GetColor(180, 180, 180);
+    int color1 = (m_SelectedStage == 0)? GetColor(255, 255, 0): GetColor(180, 180, 180);
 
     DrawString(400, 400, "STAGE 2", color1);
 
     // ステージ2
-    int color2 = (m_SelectedStage == 1)
-        ? GetColor(255, 255, 0)
-        : GetColor(180, 180, 180);
+    int color2 = (m_SelectedStage == 1)? GetColor(255, 255, 0): GetColor(180, 180, 180);
 
     DrawString(1000, 400, "STAGE 3", color2);
 
     DrawString(600, 650, "LEFT / RIGHT : SELECT", GetColor(255, 255, 255));
+
     DrawString(650, 700, "SPACE : DECIDE", GetColor(255, 255, 255));
 }
 

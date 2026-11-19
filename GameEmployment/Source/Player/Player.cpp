@@ -62,7 +62,7 @@ void Player::Draw()
     {
         MV1DrawModel(m_Model);
 
-        DrawFormatString(20,150,GetColor(255, 255, 255),"PLAYER DRAW OK");
+        //DrawFormatString(20,150,GetColor(255, 255, 255),"PLAYER DRAW OK");
     }
     else
     {

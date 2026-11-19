@@ -64,7 +64,6 @@ void Note::Update(float currentTime)
     }
 }
 
-
 void Note::Draw()
 {
     // ˜A‘Åƒm[ƒc‚Í‰¡’·‚É•`‰æ
@@ -130,7 +129,6 @@ void Note::Draw()
         DrawString((int)m_X - 7, (int)m_Y - 8,"B", GetColor(255, 255, 255));
     }
 }
-
 
 void Note::SetJudge(bool judge)
 {
