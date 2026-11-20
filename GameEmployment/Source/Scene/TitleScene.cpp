@@ -194,7 +194,6 @@ void TitleScene::Draw()
         DrawString(620, 470,m_DifficultySelect == 2 ? "> 難しい" : "  難しい",m_DifficultySelect == 2 ? yellow : gray);
 
         DrawString(550, 570,"↑ / ↓：選択    SPACE：決定", white);
-
         DrawString(550, 610,"Z：タイトルに戻る", white);
 
         if (m_ShowUnavailable)
