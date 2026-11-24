@@ -1,4 +1,6 @@
 #include "Camera.h"
+#include "../Skybox/Skybox.h"
+#include "../Scene/GameScene.h"
 
 Camera::Camera()
 {

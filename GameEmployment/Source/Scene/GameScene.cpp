@@ -100,6 +100,21 @@ void GameScene::Init(int difficulty)
     m_IsBranchCountdown = false;
     m_BranchCountdownStart = 0;
     m_BranchPauseStart = 0;
+
+    // 草原ステージ読み込み
+    m_StageHandle = MV1LoadModel("Data/Skybox/Sougen.x");
+
+    if (m_StageHandle != -1)
+    {
+        // 位置
+        MV1SetPosition(m_StageHandle, VGet(-150, 50, -150));
+
+        // 大きさを変更
+        MV1SetScale(m_StageHandle, VGet(1.0f, 5.0f, 1.0f));
+
+        // 回転
+        MV1SetRotationXYZ(m_StageHandle, VGet(0, 0, 0));
+    }
 }
 
 void GameScene::Update()
@@ -420,6 +435,12 @@ void GameScene::Draw()
 {
     m_Skybox.Draw();
 
+    // 草原ステージ描画
+    if (m_StageHandle != -1)
+    {
+        MV1DrawModel(m_StageHandle);
+    }
+
     m_Player.Draw();
 
     m_Enemy.Draw();
@@ -559,6 +580,19 @@ void GameScene::Draw()
 
     // ポーズ画面
     m_Pause.Draw();
+
+    if (m_StageHandle == -1)
+    {
+        DrawString(100, 100,
+            "STAGE LOAD ERROR",
+            GetColor(255, 0, 0));
+    }
+    else
+    {
+        DrawString(100, 100,
+            "STAGE LOAD SUCCESS",
+            GetColor(0, 255, 0));
+    }
 }
 
 void GameScene::End()
@@ -570,6 +604,12 @@ void GameScene::End()
     m_SE.End();
 
     m_Enemy.End();
+
+    if (m_StageHandle != -1)
+    {
+        MV1DeleteModel(m_StageHandle);
+        m_StageHandle = -1;
+    }
 }
 
 bool GameScene::IsGameClear() const

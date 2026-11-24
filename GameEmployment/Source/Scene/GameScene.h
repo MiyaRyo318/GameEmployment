@@ -86,4 +86,7 @@ private:
 
     // 分岐画面に入った時刻
     int m_BranchPauseStart;
+
+    // ステージ
+    int m_StageHandle;
 };
