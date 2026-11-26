@@ -110,7 +110,7 @@ void GameScene::Init(int difficulty)
         MV1SetPosition(m_StageHandle, VGet(-150, 50, -150));
 
         // ‘å‚«‚³‚ğ•ÏX
-        MV1SetScale(m_StageHandle, VGet(1.0f, 5.0f, 1.0f));
+        MV1SetScale(m_StageHandle, VGet(1.0f, 4.0f, 1.0f));
 
         // ‰ñ“]
         MV1SetRotationXYZ(m_StageHandle, VGet(0, 0, 0));
